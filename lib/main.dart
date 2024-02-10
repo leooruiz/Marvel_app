@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:marvel_app/screens/details.dart';
+import 'package:marvel_app/screens/favorites.dart';
+import 'package:marvel_app/screens/home.dart';
+import 'package:marvel_app/utils/constants/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,21 +14,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      routes: {
+        Routes.home: (context) => const Home(),
+        Routes.details: (context) => const Details(),
+        Routes.favorites: (context) => const Favorites(),
+      },
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      // initialRoute: Routes.home,
+      home: const Home(),
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Placeholder();
   }
 }
