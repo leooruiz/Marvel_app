@@ -7,10 +7,10 @@ class HomeListBloc extends Bloc<HomeListEvent, HomeListStates> {
   final ApiController _apiController = ApiController();
 
   HomeListBloc() : super(HomeLoadingState()) {
-    on<HomeLoadHeroes>((event, emit) => getHeroes());
+    on<HomeLoadHeroes>((event, emit) => getHeroes(emit));
   }
 
-  void getHeroes() async {
+  void getHeroes(emit) async {
     try {
       emit(HomeLoadingState());
       final heroes = await _apiController.getHeroes();

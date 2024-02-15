@@ -2,9 +2,9 @@ import 'package:marvel_app/controllers/api_controller.dart';
 import 'package:marvel_app/domain/models/hero.dart';
 
 class HeroesController {
+  final ApiController apiController = ApiController();
   final List<MarvelHero> favoriteHeroes = [];
   final List<MarvelHero> homeHeroes = [];
-  ApiController apiController = ApiController();
 
   Future<List<MarvelHero>> loadHomeHeroes(MarvelHero hero) async {
     final List<MarvelHero> fetchHeroes = await apiController.getHeroes();
