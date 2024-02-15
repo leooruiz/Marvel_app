@@ -21,14 +21,18 @@ class FavoritesBloc extends Bloc<FavoriteListEvents, FavoriteListStates> {
 
     on<AddFavorite>(
       (event, emit) {
-        emit(FavoriteSuccessState(
-            favoriteHeros: heroesController.addFavoriteHero(event.hero)));
+        if (!heroesController.favoriteHeroes.contains(event.hero)) {
+          emit(FavoriteSuccessState(
+              favoriteHeros: heroesController.addFavoriteHero(event.hero)));
+        }
       },
     );
     on<RemoveFavorite>(
       (event, emit) {
-        emit(FavoriteSuccessState(
-            favoriteHeros: heroesController.removeFavoriteHero(event.hero)));
+        if (heroesController.favoriteHeroes.contains(event.hero)) {
+          emit(FavoriteSuccessState(
+              favoriteHeros: heroesController.removeFavoriteHero(event.hero)));
+        }
       },
     );
   }

@@ -13,7 +13,7 @@ class _HomeState extends State<Home> {
   static const List<Widget> pages = <Widget>[
     HeroesList(),
     Favorites(),
-  ]; //puxar da classe com rotas nomeadas(implementar rotas nomeadas no projeto todo).
+  ];
 
   int _selectedIndex = 0;
 

@@ -1,12 +1,9 @@
 import 'package:marvel_app/controllers/api_controller.dart';
 import 'package:marvel_app/domain/models/hero.dart';
-import 'package:marvel_app/examples/repo.dart';
 
 class HeroesController {
   final List<MarvelHero> favoriteHeroes = [];
-  final List<MarvelHero> homeHeroes = [
-    marvelHero,
-  ];
+  final List<MarvelHero> homeHeroes = [];
   ApiController apiController = ApiController();
 
   Future<List<MarvelHero>> loadHomeHeroes(MarvelHero hero) async {
@@ -16,7 +13,7 @@ class HeroesController {
   }
 
   List<MarvelHero> addFavoriteHero(MarvelHero hero) {
-    favoriteHeroes.add(hero);
+    favoriteHeroes.add(hero); //TODO: MUDAR PARA SET, POIS NÃO PODE TER DOIS HERÓIS IGUAIS.
     return favoriteHeroes;
   }
 

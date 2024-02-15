@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marvel_app/data/bloc/favorite_bloc/favorite_list_events.dart';
+import 'package:marvel_app/data/bloc/favorite_bloc/favorites_bloc.dart';
+import 'package:marvel_app/data/bloc/home_bloc/home_list_bloc.dart';
+import 'package:marvel_app/data/bloc/home_bloc/home_list_events.dart';
 import 'package:marvel_app/screens/details.dart';
 import 'package:marvel_app/screens/favorites.dart';
 import 'package:marvel_app/screens/home.dart';
@@ -13,19 +18,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        Routes.home: (context) => const Home(),
-        Routes.details: (context) => const Details(),
-        Routes.favorites: (context) => const Favorites(),
-      },
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => FavoritesBloc()..add(FavoriteLoadList()),
+        ),
+        BlocProvider(
+          create: (context) => HomeListBloc()..add(HomeLoadHeroes()),
+        ),
+      ],
+      child: MaterialApp(
+        // routes: {
+        //   Routes.home: (context) => const Home(),
+        //   Routes.details: (context) => ,
+        //   Routes.favorites: (context) => const Favorites(),
+        // },
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        // initialRoute: Routes.home,
+        home: const Home(),
       ),
-      // initialRoute: Routes.home,
-      home: const Home(),
     );
   }
 }
