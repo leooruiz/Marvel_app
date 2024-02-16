@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_app/data/bloc/favorite_bloc/favorite_list_events.dart';
 import 'package:marvel_app/data/bloc/favorite_bloc/favorite_list_states.dart';
 import 'package:marvel_app/data/bloc/favorite_bloc/favorites_bloc.dart';
 import 'package:marvel_app/screens/details.dart';
-import 'package:marvel_app/utils/constants/routes.dart';
 
 class Favorites extends StatelessWidget {
   const Favorites({super.key});
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FavoritesBloc>();
     return CustomScrollView(
       slivers: [
         BlocBuilder<FavoritesBloc, FavoriteListStates>(
@@ -25,7 +22,7 @@ class Favorites extends StatelessWidget {
             } else if (state is FavoriteSuccessState) {
               return SliverList.builder(
                 itemBuilder: (context, index) {
-                  return state.favoriteHeros[index].image != null
+                  return state.favoriteHeroes[index].image != null
                       ? Center(
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),
@@ -35,20 +32,19 @@ class Favorites extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => Details(
-                                          hero: state.favoriteHeros[index]),
+                                          hero: state.favoriteHeroes[index]),
                                     )),
                                 child: Card(
                                   child: Column(
                                     children: [
-                                      Text(state.favoriteHeros[index].name
-                                          .toString()),
-                                      Text(state.favoriteHeros[index].id
+                                      Text(state.favoriteHeroes[index].name!),
+                                      Text(state.favoriteHeroes[index].id
                                           .toString()),
                                       // Text(state
-                                      //     .favoriteHeros[index].description
+                                      //     .favoriteHeroes[index].description
                                       //     .toString()),
                                       Image.network(
-                                          state.favoriteHeros[index].image!),
+                                          state.favoriteHeroes[index].image!),
                                     ],
                                   ),
                                 ),
@@ -62,7 +58,7 @@ class Favorites extends StatelessWidget {
                           child: Text('TESTING IF ITS NULL'),
                         )));
                 },
-                itemCount: state.favoriteHeros.length,
+                itemCount: state.favoriteHeroes.length,
               );
             } else if (state is FavoriteErrorState) {
               return const SliverToBoxAdapter(child: Text('Erro'));
