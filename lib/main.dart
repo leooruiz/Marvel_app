@@ -4,10 +4,7 @@ import 'package:marvel_app/data/bloc/favorite_bloc/favorite_list_events.dart';
 import 'package:marvel_app/data/bloc/favorite_bloc/favorites_bloc.dart';
 import 'package:marvel_app/data/bloc/home_bloc/home_list_bloc.dart';
 import 'package:marvel_app/data/bloc/home_bloc/home_list_events.dart';
-import 'package:marvel_app/screens/details.dart';
-import 'package:marvel_app/screens/favorites.dart';
 import 'package:marvel_app/screens/home.dart';
-import 'package:marvel_app/utils/constants/routes.dart';
 
 void main() {
   runApp(const MyApp());

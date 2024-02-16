@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:marvel_app/domain/models/hero.dart';
+import 'package:marvel_app/domain/models/marvel_hero.dart';
 import 'package:marvel_app/utils/constants/api_url.dart';
 
 class DataApi {
