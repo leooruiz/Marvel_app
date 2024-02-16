@@ -1,9 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+// import 'package:floor/floor.dart';
+
+// @entity
 class MarvelHero {
-  String? name;
-  int? id;
+  // @primaryKey
+  String? name; //TODO mudar para não nullable
+  int? id; //TODO mudar para não nullable
   String? description;
   String? image;
   MarvelHero({
