@@ -17,8 +17,9 @@ class HeroesController {
   }
 
   Future<List<MarvelHero>> getFavoriteHeroes() async {
-    final heroes = await prefs.getMarvelHeroesFromDatabase();
-    return heroes;
+    final heroesFromPrefs = await prefs.getMarvelHeroesFromDatabase();
+    favoriteHeroes.addAll(heroesFromPrefs);
+    return favoriteHeroes;
   }
 
   Future<List<MarvelHero>> addFavoriteHero(MarvelHero hero) async {
