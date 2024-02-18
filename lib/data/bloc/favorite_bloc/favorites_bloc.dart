@@ -5,8 +5,8 @@ import 'package:marvel_app/data/bloc/favorite_bloc/favorite_list_states.dart';
 import 'package:marvel_app/utils/shared_prefs.dart';
 
 class FavoritesBloc extends Bloc<FavoriteListEvents, FavoriteListStates> {
-  final HeroesController _heroesController = HeroesController();
-  final SharedPrefs prefs = SharedPrefs();
+  final HeroesController _repo = HeroesController();
+
 
   FavoritesBloc() : super(FavoriteLoadState()) {
     on<FavoriteLoadList>(
@@ -21,18 +21,16 @@ class FavoritesBloc extends Bloc<FavoriteListEvents, FavoriteListStates> {
       },
     );
     void removeHero(emit, event) async {
-      if (_heroesController.favoriteHeroes.contains(event.hero)) {
+      if (_repo.favoriteHeroes.contains(event.hero)) {
         emit(FavoriteSuccessState(
-            favoriteHeroes:
-                await _heroesController.removeFavoriteHero(event.hero)));
+            favoriteHeroes: await _repo.removeFavoriteHero(event.hero)));
       }
     }
 
     void addHero(emit, event) async {
-      if (!_heroesController.favoriteHeroes.contains(event.hero)) {
+      if (!_repo.favoriteHeroes.contains(event.hero)) {
         emit(FavoriteSuccessState(
-            favoriteHeroes:
-                await _heroesController.addFavoriteHero(event.hero)));
+            favoriteHeroes: await _repo.addFavoriteHero(event.hero)));
       }
     }
 
