@@ -41,8 +41,6 @@ class HeroesList extends StatelessWidget {
                                   children: [
                                     Text(state.heroes[index].name.toString()),
                                     Text(state.heroes[index].id.toString()),
-                                    Text(state.heroes[index].description
-                                        .toString()),
                                     Image.network(state.heroes[index].image!),
                                   ],
                                 ),
