@@ -1,18 +1,19 @@
-import 'package:marvel_app/controllers/api_controller.dart';
+import 'package:marvel_app/data/api/data_api.dart';
 import 'package:marvel_app/domain/models/marvel_hero.dart';
 import 'package:marvel_app/utils/shared_prefs.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HeroesController {
-  final ApiController apiController = ApiController();
+  final DataApi dataApi = DataApi();
   final SharedPrefs prefs = SharedPrefs();
   final List<MarvelHero> homeHeroes = [];
   final List<MarvelHero> favoriteHeroes = [];
 
-  Future<List<MarvelHero>> loadHomeHeroes(MarvelHero hero) async {
-    final List<MarvelHero> fetchHeroes = await apiController
-        .getHeroes(); //TODO: Usar essa função quando for utilizar lazy load, pois assim a lista será aumentada ao carregar, e observaremos através do BlocBuilder, quando carregar mais (ao scrollar o maximo possivel para baixo) ele irá atualizar a tela automaticamente.
-    homeHeroes.addAll(fetchHeroes);
+  Future<List<MarvelHero>> loadAllHeroes() async {
+    final heroesFromPrefs = await prefs.getMarvelHeroesFromDatabase();
+    print(heroesFromPrefs);
+    final List<MarvelHero> heroesFromApi = await dataApi
+        .getHeroesList(); //TODO: Usar essa função quando for utilizar lazy load, pois assim a lista será aumentada ao carregar, e observaremos através do BlocBuilder, quando carregar mais (ao scrollar o maximo possivel para baixo) ele irá atualizar a tela automaticamente.
+    homeHeroes.addAll(heroesFromApi);
     return homeHeroes;
   }
 
@@ -23,8 +24,6 @@ class HeroesController {
   }
 
   Future<List<MarvelHero>> addFavoriteHero(MarvelHero hero) async {
-    // final SharedPreferences prefs = await SharedPreferences.getInstance();
-    // prefs.setString(hero.id.toString(), hero.id.toString());
     prefs.addToDatabase(hero);
     favoriteHeroes.add(
       hero,
@@ -33,9 +32,7 @@ class HeroesController {
   }
 
   Future<List<MarvelHero>> removeFavoriteHero(MarvelHero hero) async {
-    // final SharedPreferences prefs = await SharedPreferences
-    //     .getInstance(); //TODO: melhorar esta função, talvez juntar com a de cima.
-    // prefs.remove(hero.id.toString());
+    prefs.removeFromDatabase(hero);
     favoriteHeroes.remove(hero);
     return favoriteHeroes;
   }
