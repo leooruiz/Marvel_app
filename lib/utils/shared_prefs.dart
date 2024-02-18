@@ -6,6 +6,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPrefs {
   List<MarvelHero> favoriteMarvelHeroes = [];
 
+  void removeFromDatabase(MarvelHero hero) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getStringList('favoriteHeroes') == null) {
+      prefs.setStringList('favoriteHeroes', []);
+    }
+    prefs.setString(hero.name!, hero.toJson());
+    final String? currentHero = prefs.getString(hero.name!);
+    final List<String>? listaPrefs = prefs.getStringList('favoriteHeroes');
+    if (listaPrefs!.contains(currentHero)) {
+      listaPrefs.remove(currentHero);
+      prefs.setStringList('favoriteHeroes', listaPrefs);
+    }
+  }
+
   void addToDatabase(MarvelHero hero) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getStringList('favoriteHeroes') == null) {
@@ -16,13 +30,16 @@ class SharedPrefs {
     final List<String>? listaPrefs = prefs.getStringList('favoriteHeroes');
     if (!listaPrefs!.contains(currentHero!)) {
       listaPrefs.add(currentHero);
+      prefs.setStringList('favoriteHeroes', listaPrefs);
     }
-    prefs.setStringList('favoriteHeroes', listaPrefs);
   } //COMMITAR QUANDO FUNCIONAR
 
   Future<List<String>> getDatabase() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final favoritesDatabase = prefs.getStringList('favoriteHeroes');
+    if (prefs.getStringList('favoriteHeroes') == null) {
+      prefs.setStringList('favoriteHeroes', []);
+    }
+    final List<String>? favoritesDatabase = prefs.getStringList('favoriteHeroes');
     return favoritesDatabase!;
   }
 
@@ -31,7 +48,6 @@ class SharedPrefs {
     for (var i = 0; i < database.length; i++) {
       favoriteMarvelHeroes.add(_fromMapToHero(_fromJsonToMap(database[i])));
     }
-    print(favoriteMarvelHeroes);
     return favoriteMarvelHeroes;
   }
 
