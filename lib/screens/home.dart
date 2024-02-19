@@ -27,10 +27,16 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Marvel Heroes'),
+        title: const Text(
+          'Marvel Heroes',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Color.fromARGB(255, 145, 16, 16),
       ),
       body: pages.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color.fromARGB(255, 145, 16, 16),
+        fixedColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(

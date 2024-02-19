@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_app/data/bloc/favorite_bloc/favorite_list_states.dart';
-import 'package:marvel_app/data/bloc/favorite_bloc/favorites_bloc.dart';
+import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorite_list_states.dart';
+import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_bloc.dart';
 import 'package:marvel_app/screens/details.dart';
 
 class Favorites extends StatelessWidget {
@@ -35,16 +35,17 @@ class Favorites extends StatelessWidget {
                                           hero: state.favoriteHeroes[index]),
                                     )),
                                 child: Card(
+                                  color: Color.fromARGB(255, 145, 16, 16),
                                   child: Column(
                                     children: [
+                                      Image.network(
+                                          state.favoriteHeroes[index].image!),
                                       Text(state.favoriteHeroes[index].name!),
                                       Text(state.favoriteHeroes[index].id
                                           .toString()),
                                       // Text(state
                                       //     .favoriteHeroes[index].description
                                       //     .toString()),
-                                      Image.network(
-                                          state.favoriteHeroes[index].image!),
                                     ],
                                   ),
                                 ),

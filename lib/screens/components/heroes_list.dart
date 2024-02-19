@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_app/data/bloc/home_bloc/home_list_bloc.dart';
-import 'package:marvel_app/data/bloc/home_bloc/home_list_states.dart';
+import 'package:marvel_app/domain/business/bloc/home_bloc/home_list_bloc.dart';
+import 'package:marvel_app/domain/business/bloc/home_bloc/home_list_states.dart';
 import 'package:marvel_app/screens/details.dart';
 
 class HeroesList extends StatelessWidget {
@@ -27,6 +27,8 @@ class HeroesList extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Ink(
+                            height: 100,
+                            width: MediaQuery.of(context).size.width / 1.2,
                             child: InkWell(
                               onTap: () => Navigator.push(
                                 context,
@@ -37,11 +39,15 @@ class HeroesList extends StatelessWidget {
                                 ),
                               ),
                               child: Card(
-                                child: Column(
+                                color: Color.fromARGB(255, 145, 16, 16),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
+                                    Image.network(state.heroes[index].image!,
+                                        fit: BoxFit.cover),
                                     Text(state.heroes[index].name.toString()),
                                     Text(state.heroes[index].id.toString()),
-                                    Image.network(state.heroes[index].image!),
                                   ],
                                 ),
                               ),
