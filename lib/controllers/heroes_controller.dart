@@ -3,22 +3,22 @@ import 'package:marvel_app/domain/models/marvel_hero.dart';
 import 'package:marvel_app/utils/shared_prefs.dart';
 
 class HeroesController {
-  final DataApi dataApi = DataApi();
+  final DataApi _dataApi = DataApi();
   final SharedPrefs prefs = SharedPrefs();
   final List<MarvelHero> homeHeroes = [];
   final List<MarvelHero> favoriteHeroes = [];
 
   Future<List<MarvelHero>> loadAllHeroes() async {
-    final heroesFromPrefs = await prefs.getMarvelHeroesFromDatabase();
+    final List<MarvelHero> heroesFromPrefs = await prefs.getMarvelHeroesFromDatabase();
     print(heroesFromPrefs);
-    final List<MarvelHero> heroesFromApi = await dataApi
+    final List<MarvelHero> heroesFromApi = await _dataApi
         .getHeroesList(); //TODO: Usar essa função quando for utilizar lazy load, pois assim a lista será aumentada ao carregar, e observaremos através do BlocBuilder, quando carregar mais (ao scrollar o maximo possivel para baixo) ele irá atualizar a tela automaticamente.
     homeHeroes.addAll(heroesFromApi);
     return homeHeroes;
   }
 
   Future<List<MarvelHero>> getFavoriteHeroes() async {
-    final heroesFromPrefs = await prefs.getMarvelHeroesFromDatabase();
+    final List<MarvelHero> heroesFromPrefs = await prefs.getMarvelHeroesFromDatabase();
     favoriteHeroes.addAll(heroesFromPrefs);
     return favoriteHeroes;
   }
@@ -27,7 +27,7 @@ class HeroesController {
     prefs.addToDatabase(hero);
     favoriteHeroes.add(
       hero,
-    ); //TODO: chamar shared preferences aqui, adicionando todas as informações do herói ao shared_prefs.
+    );
     return favoriteHeroes;
   }
 
