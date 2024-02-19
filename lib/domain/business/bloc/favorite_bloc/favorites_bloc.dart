@@ -1,9 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marvel_app/controllers/heroes_controller.dart';
-import 'package:marvel_app/data/bloc/favorite_bloc/favorite_list_events.dart';
-import 'package:marvel_app/data/bloc/favorite_bloc/favorite_list_states.dart';
+import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorite_list_events.dart';
+import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorite_list_states.dart';
 import 'package:marvel_app/domain/models/marvel_hero.dart';
-import 'package:marvel_app/utils/shared_prefs.dart';
 
 class FavoritesBloc extends Bloc<FavoriteListEvents, FavoriteListStates> {
   final HeroesController _repo = HeroesController();
