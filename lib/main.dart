@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_app/data/bloc/favorite_bloc/favorite_list_events.dart';
-import 'package:marvel_app/data/bloc/favorite_bloc/favorites_bloc.dart';
-import 'package:marvel_app/data/bloc/home_bloc/home_list_bloc.dart';
-import 'package:marvel_app/data/bloc/home_bloc/home_list_events.dart';
+import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorite_list_events.dart';
+import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_bloc.dart';
+import 'package:marvel_app/domain/business/bloc/home_bloc/home_list_bloc.dart';
+import 'package:marvel_app/domain/business/bloc/home_bloc/home_list_events.dart';
 import 'package:marvel_app/screens/home.dart';
 
 void main() {

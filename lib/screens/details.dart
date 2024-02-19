@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_app/data/bloc/favorite_bloc/favorite_list_events.dart';
-import 'package:marvel_app/data/bloc/favorite_bloc/favorite_list_states.dart';
-import 'package:marvel_app/data/bloc/favorite_bloc/favorites_bloc.dart';
+import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorite_list_events.dart';
+import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorite_list_states.dart';
+import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_bloc.dart';
 import 'package:marvel_app/domain/models/marvel_hero.dart';
 
 class Details extends StatefulWidget {
@@ -20,6 +20,7 @@ class _DetailsState extends State<Details> {
       appBar: AppBar(
         actions: [
           BlocBuilder<FavoritesBloc, FavoriteListStates>(
+              //TODO: RETIRAR ESSE BLOCBUILDER E DEIXAR SOMENTE CONTEXT.WATCH/READ
               builder: (context, state) {
             if (state is FavoriteSuccessState) {
               return state.favoriteHeroes.contains(widget.hero)
