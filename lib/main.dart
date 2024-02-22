@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorite_list_events.dart';
+import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_list_events.dart';
 import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_bloc.dart';
 import 'package:marvel_app/domain/business/bloc/home_bloc/home_list_bloc.dart';
 import 'package:marvel_app/domain/business/bloc/home_bloc/home_list_events.dart';
@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => FavoritesBloc()..add(FavoriteLoadList()),
+          create: (context) => FavoritesBloc()..add(FavoriteLoadEvent()),
         ),
         BlocProvider(
-          create: (context) => HomeListBloc()..add(HomeLoadHeroes()),
+          create: (context) => HomeBloc()..add(HomeLoadEvent()),
         ),
       ],
       child: MaterialApp(
