@@ -1,5 +1,5 @@
-import 'package:marvel_app/data/api/data_api.dart';
-import 'package:marvel_app/data/shared_prefs.dart';
+import 'package:marvel_app/data/api_service/data_api.dart';
+import 'package:marvel_app/data/dao_service/shared_prefs.dart';
 import 'package:marvel_app/domain/models/marvel_hero.dart';
 
 class HeroesController {
