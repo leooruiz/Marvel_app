@@ -9,8 +9,8 @@ class HeroesController {
   final List<MarvelHero> favoriteHeroes = [];
 
   Future<List<MarvelHero>> loadAllHeroes() async {
-    final List<MarvelHero> heroesFromPrefs =
-        await _prefs.getMarvelHeroesFromDatabase();
+    // final List<MarvelHero> heroesFromPrefs =
+    //     await _prefs.getMarvelHeroesFromDatabase();
     // print(heroesFromPrefs);
     final List<MarvelHero> heroesFromApi = await _dataApi
         .getHeroesList(); //TODO: Usar essa função quando for utilizar lazy load, pois assim a lista será aumentada ao carregar, e observaremos através do BlocBuilder, quando carregar mais (ao scrollar o maximo possivel para baixo) ele irá atualizar a tela automaticamente.

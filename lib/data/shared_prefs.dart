@@ -11,8 +11,8 @@ class SharedPrefs {
     if (prefs.getStringList('favoriteHeroes') == null) {
       prefs.setStringList('favoriteHeroes', []);
     }
-    prefs.setString(hero.name!, hero.toJson());
-    final String? currentHero = prefs.getString(hero.name!);
+    prefs.setString(hero.name, hero.toJson());
+    final String? currentHero = prefs.getString(hero.name);
     final List<String>? listaPrefs = prefs.getStringList('favoriteHeroes');
     if (listaPrefs!.contains(currentHero)) {
       listaPrefs.remove(currentHero);
@@ -25,8 +25,8 @@ class SharedPrefs {
     if (prefs.getStringList('favoriteHeroes') == null) {
       prefs.setStringList('favoriteHeroes', []);
     }
-    prefs.setString(hero.name!, hero.toJson());
-    final String? currentHero = prefs.getString(hero.name!);
+    prefs.setString(hero.name, hero.toJson());
+    final String? currentHero = prefs.getString(hero.name);
     final List<String>? listaPrefs = prefs.getStringList('favoriteHeroes');
     if (!listaPrefs!.contains(currentHero!)) {
       listaPrefs.add(currentHero);

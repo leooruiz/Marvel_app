@@ -34,13 +34,13 @@ class _HomeState extends State<Home> {
               fontWeight: FontWeight.w700),
         ),
         elevation: 4,
-        backgroundColor: Color.fromARGB(255, 179, 0, 0),
+        backgroundColor: const Color.fromARGB(255, 179, 0, 0),
       ),
       body: pages.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.white60,
         selectedItemColor: Colors.white,
-        backgroundColor: Color.fromARGB(255, 179, 0, 0),
+        backgroundColor: const Color.fromARGB(255, 179, 0, 0),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             tooltip: 'Heroes',
