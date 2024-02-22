@@ -1,19 +1,19 @@
 import 'package:marvel_app/domain/models/marvel_hero.dart';
 
-abstract class FavoriteListStates {
-  FavoriteListStates();
+abstract class FavoritesStates {
+  FavoritesStates();
 }
 
-class FavoriteLoadState extends FavoriteListStates {
+class FavoriteLoadState extends FavoritesStates {
   FavoriteLoadState();
 }
 
-class FavoriteSuccessState extends FavoriteListStates {
+class FavoriteSuccessState extends FavoritesStates {
   FavoriteSuccessState({required this.favoriteHeroes});
   List<MarvelHero> favoriteHeroes;
 }
 
-class FavoriteErrorState extends FavoriteListStates {
+class FavoriteErrorState extends FavoritesStates {
   FavoriteErrorState({required this.errorMessage});
   String errorMessage;
 }

@@ -1,3 +1,6 @@
-abstract class HomeListEvent {}
+abstract class HomeEvent {}
 
-class HomeLoadHeroes extends HomeListEvent {}
+class HomeLoadEvent extends HomeEvent {
+
+  //Loading more heroes from api event
+}
