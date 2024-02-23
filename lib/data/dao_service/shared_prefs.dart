@@ -39,7 +39,8 @@ class SharedPrefs {
     if (prefs.getStringList('favoriteHeroes') == null) {
       prefs.setStringList('favoriteHeroes', []);
     }
-    final List<String>? favoritesDatabase = prefs.getStringList('favoriteHeroes');
+    final List<String>? favoritesDatabase =
+        prefs.getStringList('favoriteHeroes');
     return favoritesDatabase!;
   }
 
