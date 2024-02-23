@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marvel_app/screens/components/heroes_list.dart';
 import 'package:marvel_app/screens/favorites.dart';
+import 'package:marvel_app/utils/constants/wordings.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -28,7 +29,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'MARVEL Heroes',
+          Wordings.title,
           style: TextStyle(
               color: Color.fromARGB(255, 255, 255, 255),
               fontWeight: FontWeight.w700),
@@ -43,18 +44,18 @@ class _HomeState extends State<Home> {
         backgroundColor: const Color.fromARGB(255, 179, 0, 0),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            tooltip: 'Heroes',
+            tooltip: Wordings.heroes,
             icon: Icon(
               Icons.list,
             ),
-            label: 'Heroes',
+            label: Wordings.heroes,
           ),
           BottomNavigationBarItem(
-            tooltip: 'Favorites',
+            tooltip: Wordings.favorites,
             icon: Icon(
               Icons.favorite,
             ),
-            label: 'Favorites',
+            label: Wordings.favorites,
           ),
         ],
         currentIndex: _selectedIndex,

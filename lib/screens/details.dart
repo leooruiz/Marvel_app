@@ -16,6 +16,7 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
+    final List<String> favoritesIds = [];
     final bloc = context.watch<FavoritesBloc>();
     return Scaffold(
       appBar: AppBar(
@@ -23,12 +24,10 @@ class _DetailsState extends State<Details> {
           BlocBuilder<FavoritesBloc, FavoritesStates>(
             builder: (context, state) {
               if (state is FavoriteSuccessState) {
-                final List<MarvelHero> favoriteHeroes = state.favoriteHeroes;
-                final List<int> favoritesIds = [];
-                for (var i = 0; i < favoriteHeroes.length; i++) {
-                  favoritesIds.add(favoriteHeroes[i].id);
-                }
-                return (favoritesIds.contains(widget.hero.id))
+                // for (var i = 0; i < state.favoriteHeroes.length; i++) {
+                //   favoritesIds.add(state.favoriteHeroes[i].id.toString());
+                // }
+                return (state.favoriteHeroes.contains(widget.hero))
                     ? IconButton(
                         onPressed: () {
                           bloc.add(FavoriteRemoveEvent(hero: widget.hero));
@@ -37,6 +36,8 @@ class _DetailsState extends State<Details> {
                       )
                     : IconButton(
                         onPressed: () {
+                          favoritesIds.add(widget.hero.id.toString());
+
                           bloc.add(FavoriteAddEvent(hero: widget.hero));
                         },
                         icon: const Icon(Icons.favorite_border),

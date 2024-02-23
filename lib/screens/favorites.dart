@@ -24,23 +24,14 @@ class Favorites extends StatelessWidget {
             } else if (state is FavoriteSuccessState) {
               return SliverList.builder(
                 itemBuilder: (context, index) {
-                  return state.favoriteHeroes[index].image != null
-                      ? HeroCard(heroes: state.favoriteHeroes, index: index)
-                      : const SliverToBoxAdapter(
-                          child: Center(
-                              child: SizedBox(
-                          child: Text('TESTING IF ITS NULL'),
-                        )));
+                  return HeroCard(heroes: state.favoriteHeroes, index: index);
                 },
                 itemCount: state.favoriteHeroes.length,
               );
             } else if (state is FavoriteErrorState) {
-              return const SliverToBoxAdapter(child: Text('Erro'));
+              return SliverToBoxAdapter(child: Text(state.errorMessage));
             } else {
-              return const SliverToBoxAdapter(
-                  child: Center(
-                child: Text('Nothing'),
-              ));
+              return const SizedBox.shrink();
             }
           },
         )

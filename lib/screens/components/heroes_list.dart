@@ -23,13 +23,7 @@ class HeroesList extends StatelessWidget {
           } else if (state is HomeSuccessState) {
             return SliverList.builder(
               itemBuilder: (context, index) {
-                return state.heroes[index].image != null
-                    ? HeroCard(heroes: state.heroes, index: index)
-                    : const SliverToBoxAdapter(
-                        child: Center(
-                            child: SizedBox(
-                        child: Text('TESTING IF ITS NULL'),
-                      )));
+                return HeroCard(heroes: state.heroes, index: index);
               },
               itemCount: state.heroes.length,
             );
@@ -37,10 +31,7 @@ class HeroesList extends StatelessWidget {
             return SliverFillRemaining(
                 child: Center(child: Text(state.errorMessage)));
           } else {
-            return const SliverToBoxAdapter(
-                child: Center(
-              child: Text('Nothing'),
-            ));
+            return const SizedBox.shrink();
           }
         })
       ],
