@@ -12,7 +12,7 @@ class HeroCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
       child: Card(
-        color: const Color.fromARGB(255, 145, 16, 16),
+        color: Color.fromARGB(255, 133, 22, 22),
         clipBehavior: Clip.antiAlias,
         elevation: 10,
         shadowColor: Colors.black,

@@ -28,20 +28,19 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         title: const Text(
           Wordings.title,
-          style: TextStyle(
-              color: Color.fromARGB(255, 255, 255, 255),
-              fontWeight: FontWeight.w700),
+          style: TextStyle(fontWeight: FontWeight.w700),
         ),
         elevation: 4,
-        backgroundColor: const Color.fromARGB(255, 179, 0, 0),
+        backgroundColor: Color.fromARGB(255, 114, 24, 24),
       ),
       body: pages.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.white60,
         selectedItemColor: Colors.white,
-        backgroundColor: const Color.fromARGB(255, 179, 0, 0),
+        backgroundColor: Color.fromARGB(255, 114, 24, 24),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             tooltip: Wordings.heroes,
