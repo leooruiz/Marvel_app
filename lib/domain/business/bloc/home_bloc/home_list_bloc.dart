@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marvel_app/controllers/heroes_controller.dart';
 import 'package:marvel_app/domain/business/bloc/home_bloc/home_list_events.dart';
@@ -15,8 +16,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeStates> {
       emit(HomeLoadingState());
       final heroes = await _heroesController.loadAllHeroes();
       emit(HomeSuccessState(heroes: heroes));
-    } on Exception catch (e) {
-      emit(HomeErrorState(errorMessage: e.toString()));
+    } on DioException {
+      emit(HomeErrorState(errorMessage: 'Erro de conexão com o servidor'));
+    } on Exception {
+      emit(HomeErrorState(errorMessage: 'Algo deu Errado'));
     }
   }
 }
