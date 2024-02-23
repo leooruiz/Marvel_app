@@ -1,11 +1,13 @@
 import 'dart:convert';
 
-class MarvelHero {
-  String name;
-  int id;
-  String? description;
-  String? image;
-  MarvelHero({
+import 'package:equatable/equatable.dart';
+
+class MarvelHero extends Equatable {
+  final String name;
+  final int id;
+  final String? description;
+  final String? image;
+  const MarvelHero({
     required this.name,
     required this.id,
     this.description,
@@ -36,4 +38,7 @@ class MarvelHero {
   String toString() {
     return 'Hero(name: $name, id: $id, description: $description, image: $image)';
   }
+
+  @override
+  List<Object?> get props => [name, id, description, image];
 }
