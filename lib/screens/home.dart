@@ -28,14 +28,18 @@ class _HomeState extends State<Home> {
     });
   }
 
-  bool light = true;
+  bool _light = true;
 
   final MaterialStateProperty<Icon?> thumbIcon =
       MaterialStateProperty.resolveWith<Icon>((states) {
     if (states.contains(MaterialState.selected)) {
-      return const Icon(Icons.light_mode);
+      return const Icon(
+        Icons.light_mode_sharp,
+      );
     } else {
-      return const Icon(Icons.dark_mode);
+      return const Icon(
+        Icons.dark_mode,
+      );
     }
   });
 
@@ -74,15 +78,15 @@ class _HomeState extends State<Home> {
                   ), //TODO: WORDINGS
                   Switch(
                     inactiveThumbColor: Colors.black,
-                    activeColor: Colors.amber.shade500,
+                    activeTrackColor: Colors.black,
                     thumbIcon: thumbIcon,
                     value:
-                        light, //TODO: Salvar preferencia do usuario no shared prefs
+                        _light, //TODO: Salvar preferencia do usuario no shared prefs
                     onChanged: (bool value) {
-                      themeBloc.add(ThemeChangeEvent(isLight: light));
+                      themeBloc.add(ThemeChangeEvent(isLight: _light));
                       setState(
                         () {
-                          light = value;
+                          _light = value;
                         },
                       );
                     },
