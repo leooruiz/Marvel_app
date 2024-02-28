@@ -25,17 +25,27 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        // routes: {
-        //   Routes.home: (context) => const Home(),
-        //   Routes.details: (context) => ,
-        //   Routes.favorites: (context) => const Favorites(),
-        // },
+        routes: {
+          Routes.home: (context) => const Home(),
+          Routes.favorites: (context) => const Favorites(),
+        },
+        onGenerateRoute: (settings) {
+          if (settings.name == Routes.details) {
+            final MarvelHero hero = settings.arguments as MarvelHero;
+            return MaterialPageRoute(
+              builder: (context) {
+                return Details(hero: hero);
+              },
+            );
+          }
+          return null;
+        },
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        // initialRoute: Routes.home,
+        initialRoute: Routes.home,
         home: const Home(),
       ),
     );

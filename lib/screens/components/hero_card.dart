@@ -20,14 +20,7 @@ class HeroCard extends StatelessWidget {
           height: 100,
           child: InkWell(
             borderRadius: BorderRadius.circular(10),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Details(
-                  hero: heroes[index],
-                ),
-              ),
-            ),
+            onTap: () => Navigator.pushNamed(context, Routes.details, arguments: heroes[index]),
             child: Row(
               children: [
                 Expanded(
