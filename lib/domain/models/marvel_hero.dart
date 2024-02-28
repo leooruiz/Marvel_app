@@ -5,13 +5,13 @@ import 'package:equatable/equatable.dart';
 class MarvelHero extends Equatable {
   final String name;
   final int id;
-  final String? description;
-  final String? image;
+  final String description;
+  final String image;
   const MarvelHero({
     required this.name,
     required this.id,
-    this.description,
-    this.image,
+    required this.description,
+    required this.image,
   });
 
   Map<String, dynamic> toMap() {
