@@ -1,16 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marvel_app/controllers/heroes_controller.dart';
-import 'package:marvel_app/domain/business/bloc/home_bloc/home_list_events.dart';
-import 'package:marvel_app/domain/business/bloc/home_bloc/home_list_states.dart';
+import 'package:marvel_app/domain/business/bloc/home_bloc/home_events.dart';
+import 'package:marvel_app/domain/business/bloc/home_bloc/home_states.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeStates> {
   final HeroesController _heroesController = HeroesController();
-
+  int pages = 0, limit = 15;
+  bool isLoading = false;
   HomeBloc() : super(HomeLoadingState()) {
     on<HomeLoadEvent>((event, emit) => getHeroes(emit));
   }
-
   void getHeroes(emit) async {
     try {
       emit(HomeLoadingState());
