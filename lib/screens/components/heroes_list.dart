@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/home_bloc/home_list_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/home_bloc/home_list_states.dart';
+import 'package:marvel_app/domain/business/bloc/home_bloc/home_bloc.dart';
+import 'package:marvel_app/domain/business/bloc/home_bloc/home_states.dart';
 import 'package:marvel_app/screens/components/hero_card.dart';
 
 class HeroesList extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marvel_app/domain/models/marvel_hero.dart';
-import 'package:marvel_app/screens/details.dart';
+import 'package:marvel_app/utils/constants/routes.dart';
 
 class HeroCard extends StatelessWidget {
   const HeroCard({super.key, required this.heroes, required this.index});
@@ -10,14 +10,14 @@ class HeroCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
       child: Card(
-        color: Color.fromARGB(255, 133, 22, 22),
+        color: const Color.fromARGB(255, 133, 22, 22),
         clipBehavior: Clip.antiAlias,
         elevation: 10,
         shadowColor: Colors.black,
         child: Ink(
-          height: 100,
+          height: 125,
           child: InkWell(
             borderRadius: BorderRadius.circular(10),
             onTap: () => Navigator.pushNamed(context, Routes.details, arguments: heroes[index]),
@@ -26,9 +26,9 @@ class HeroCard extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: Image.network(
-                    heroes[index].image!,
+                    heroes[index].image,
                     fit: BoxFit.cover,
-                    height: 120,
+                    height: 150,
                   ),
                 ),
                 Expanded(
@@ -39,8 +39,9 @@ class HeroCard extends StatelessWidget {
                       heroes[index].name.toString(),
                       style: const TextStyle(
                         color: Colors.white,
+                        overflow: TextOverflow.clip,
+                        fontSize: 16,
                       ),
-                      overflow: TextOverflow.clip,
                     ),
                   ),
                 ),

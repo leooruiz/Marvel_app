@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marvel_app/domain/business/bloc/theme_bloc/theme_bloc.dart';
+import 'package:marvel_app/domain/business/bloc/theme_bloc/theme_events.dart';
+import 'package:marvel_app/domain/business/bloc/theme_bloc/theme_states.dart';
 import 'package:marvel_app/screens/components/heroes_list.dart';
 import 'package:marvel_app/screens/favorites.dart';
 import 'package:marvel_app/utils/constants/wordings.dart';
@@ -11,7 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  static const List<Widget> pages = <Widget>[
+  static const List<Widget> _pages = <Widget>[
     HeroesList(),
     Favorites(),
   ];
@@ -39,7 +43,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final themeBloc = context.watch<ThemeBloc>();
     return BlocBuilder<ThemeBloc, ThemeStates>(builder: (context, state) {
-    return Scaffold(
+      return Scaffold(
         backgroundColor: state is ThemeLightState
             ? Colors.white
             : Color.fromARGB(255, 46, 46, 46),
@@ -88,39 +92,40 @@ class _HomeState extends State<Home> {
             ),
           ]),
         ),
-      appBar: AppBar(
-        foregroundColor: Colors.white,
-        title: const Text(
-          Wordings.title,
-          style: TextStyle(fontWeight: FontWeight.w700),
+        appBar: AppBar(
+          foregroundColor: Colors.white,
+          title: const Text(
+            Wordings.title,
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          elevation: 4,
+          backgroundColor: const Color.fromARGB(255, 114, 24, 24),
         ),
-        elevation: 4,
-        backgroundColor: Color.fromARGB(255, 114, 24, 24),
-      ),
-      body: pages.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Colors.white60,
-        selectedItemColor: Colors.white,
-        backgroundColor: Color.fromARGB(255, 114, 24, 24),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            tooltip: Wordings.heroes,
-            icon: Icon(
-              Icons.list,
+        body: _pages.elementAt(_selectedIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          unselectedItemColor: Colors.white60,
+          selectedItemColor: Colors.white,
+          backgroundColor: const Color.fromARGB(255, 114, 24, 24),
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              tooltip: Wordings.heroes,
+              icon: Icon(
+                Icons.list,
+              ),
+              label: Wordings.heroes,
             ),
-            label: Wordings.heroes,
-          ),
-          BottomNavigationBarItem(
-            tooltip: Wordings.favorites,
-            icon: Icon(
-              Icons.favorite,
+            BottomNavigationBarItem(
+              tooltip: Wordings.favorites,
+              icon: Icon(
+                Icons.favorite,
+              ),
+              label: Wordings.favorites,
             ),
-            label: Wordings.favorites,
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
-    );
+          ],
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+        ),
+      );
+    });
   }
 }
