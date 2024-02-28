@@ -24,9 +24,70 @@ class _HomeState extends State<Home> {
     });
   }
 
+  bool light = true;
+
+  final MaterialStateProperty<Icon?> thumbIcon =
+      MaterialStateProperty.resolveWith<Icon>((states) {
+    if (states.contains(MaterialState.selected)) {
+      return const Icon(Icons.light_mode);
+    } else {
+      return const Icon(Icons.dark_mode);
+    }
+  });
+
   @override
   Widget build(BuildContext context) {
+    final themeBloc = context.watch<ThemeBloc>();
+    return BlocBuilder<ThemeBloc, ThemeStates>(builder: (context, state) {
     return Scaffold(
+        backgroundColor: state is ThemeLightState
+            ? Colors.white
+            : Color.fromARGB(255, 46, 46, 46),
+        drawer: Drawer(
+          backgroundColor: state is ThemeLightState
+              ? Color.fromARGB(235, 255, 255, 255)
+              : Color.fromARGB(248, 46, 46, 46),
+          width: MediaQuery.of(context).size.width / 2.2,
+          child: ListView(children: [
+            DrawerHeader(
+                child: Text(
+              Wordings.settings,
+              style: TextStyle(
+                  color: Colors.red.shade900,
+                  fontSize: 26,
+                  fontWeight: FontWeight.w600),
+            )),
+            ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    Wordings.theme,
+                    style: TextStyle(
+                        color: Colors.red.shade900,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
+                  ), //TODO: WORDINGS
+                  Switch(
+                    inactiveThumbColor: Colors.black,
+                    activeColor: Colors.amber.shade500,
+                    thumbIcon: thumbIcon,
+                    value:
+                        light, //TODO: Salvar preferencia do usuario no shared prefs
+                    onChanged: (bool value) {
+                      themeBloc.add(ThemeChangeEvent(isLight: light));
+                      setState(
+                        () {
+                          light = value;
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ]),
+        ),
       appBar: AppBar(
         foregroundColor: Colors.white,
         title: const Text(

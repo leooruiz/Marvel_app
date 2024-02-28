@@ -18,7 +18,11 @@ class _DetailsState extends State<Details> {
   Widget build(BuildContext context) {
     final List<String> favoritesIds = [];
     final bloc = context.watch<FavoritesBloc>();
-    return Scaffold(
+    return BlocBuilder<ThemeBloc, ThemeStates>(
+      builder: (context, state) => Scaffold(
+        backgroundColor: state is ThemeLightState
+            ? Colors.white
+            : Color.fromARGB(255, 46, 46, 46),
       appBar: AppBar(
         foregroundColor: Colors.white,
         actionsIconTheme: IconThemeData(color: Colors.amber),
