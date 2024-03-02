@@ -10,7 +10,15 @@ class HeroesController {
   int offset = 0;
 
   Future<List<MarvelHero>> loadAllHeroes({required int offset}) async {
+    final List<MarvelHero> heroesFromApi = await _dataApi.getHeroesList(
+        offset:
+            offset); //TODO: Usar essa função quando for utilizar lazy load, pois assim a lista será aumentada ao carregar, e observaremos através do BlocBuilder, quando carregar mais (ao scrollar o maximo possivel para baixo) ele irá atualizar a tela automaticamente.
     homeHeroes.addAll(heroesFromApi);
+    List<String> list = [];
+    for (var i = 0; i < heroesFromApi.length; i++) {
+      list.add(heroesFromApi[i].name);
+    }
+    print(list);
     return homeHeroes;
   }
 

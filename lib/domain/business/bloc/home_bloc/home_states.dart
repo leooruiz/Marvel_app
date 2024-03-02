@@ -2,7 +2,8 @@ import 'package:marvel_app/domain/models/marvel_hero.dart';
 
 abstract class HomeStates {}
 
-class HomeLoadingState extends HomeStates {}
+class HomeLoadingState extends HomeStates {
+}
 
 class HomeSuccessState extends HomeStates {
   HomeSuccessState({required this.heroes});
