@@ -25,7 +25,7 @@ class _DetailsState extends State<Details> {
       builder: (context, state) => Scaffold(
         backgroundColor: state is ThemeLightState
             ? Colors.white
-            : Color.fromARGB(255, 46, 46, 46),
+            : const Color.fromARGB(255, 46, 46, 46),
         appBar: AppBar(
           foregroundColor: Colors.white,
           actionsIconTheme: const IconThemeData(color: Colors.amber),

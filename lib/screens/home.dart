@@ -15,9 +15,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  static const List<Widget> _pages = <Widget>[
+  final List<Widget> _pages = <Widget>[
     HeroesList(),
-    Favorites(),
+    const Favorites(),
   ];
 
   int _selectedIndex = 0;
@@ -50,11 +50,11 @@ class _HomeState extends State<Home> {
       return Scaffold(
         backgroundColor: state is ThemeLightState
             ? Colors.white
-            : Color.fromARGB(255, 46, 46, 46),
+            : const Color.fromARGB(255, 46, 46, 46),
         drawer: Drawer(
           backgroundColor: state is ThemeLightState
-              ? Color.fromARGB(235, 255, 255, 255)
-              : Color.fromARGB(248, 46, 46, 46),
+              ? const Color.fromARGB(235, 255, 255, 255)
+              : const Color.fromARGB(248, 46, 46, 46),
           width: MediaQuery.of(context).size.width / 2.2,
           child: ListView(children: [
             DrawerHeader(
@@ -75,7 +75,7 @@ class _HomeState extends State<Home> {
                         color: Colors.red.shade900,
                         fontSize: 20,
                         fontWeight: FontWeight.w600),
-                  ), //TODO: WORDINGS
+                  ),
                   Switch(
                     inactiveThumbColor: Colors.black,
                     activeTrackColor: Colors.black,
