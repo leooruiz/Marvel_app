@@ -6,7 +6,7 @@ import 'package:marvel_app/domain/business/bloc/home_bloc/home_states.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeStates> {
   final HeroesController _heroesController = HeroesController();
-  int pages = 0, limit = 15;
+  int offset = 0;
   bool isLoading = false;
   HomeBloc() : super(HomeLoadingState()) {
     on<HomeLoadEvent>((event, emit) => getHeroes(emit));

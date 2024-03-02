@@ -11,9 +11,10 @@ class DataApi {
     dio.options.receiveTimeout = const Duration(seconds: 5);
   }
 
-  Future<List<MarvelHero>> getHeroesList() async {
+  Future<List<MarvelHero>> getHeroesList({required int offset}) async {
     configureDio();
-    final Response response = await dio.get(dio.options.baseUrl);
+    final Response response =
+        await dio.get('${dio.options.baseUrl}&offset=$offset');
     if (response.statusCode != null &&
         response.statusCode! > 199 &&
         response.statusCode! < 300) {
