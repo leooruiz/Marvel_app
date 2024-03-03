@@ -12,7 +12,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeStates> {
   int offset = 0;
   bool isLoading = false;
   bool isFirstFetch = true;
-  List<MarvelHero> oldList = [];
+  List<MarvelHero> heroes = [];
   HomeBloc() : super(HomeLoadingState()) {
     on<HomeLoadEvent>((event, emit) => getHeroes(emit));
     scrollController.addListener(scrollListener);
@@ -37,8 +37,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeStates> {
     try {
       emit(HomeLoadingState());
       isLoading = true;
-      final heroes = await _heroesController.loadAllHeroes(offset: offset);
-      oldList.addAll(heroes);
+      heroes = await _heroesController.loadAllHeroes(offset: offset);
       isLoading = false;
       emit(HomeSuccessState(heroes: heroes));
     } on DioException {
