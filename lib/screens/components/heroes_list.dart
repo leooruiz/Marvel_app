@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/home_bloc/home_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/home_bloc/home_states.dart';
-import 'package:marvel_app/screens/components/hero_card.dart';
+import '../../domain/business/bloc/home_bloc/home_bloc.dart';
+import '../../domain/business/bloc/home_bloc/home_states.dart';
+import 'hero_card.dart';
 
 class HeroesList extends StatelessWidget {
   const HeroesList({super.key});
@@ -29,11 +29,11 @@ class HeroesList extends StatelessWidget {
             );
           } else if (state is HomeErrorState) {
             return SliverFillRemaining(
-                child: Center(child: Text(state.errorMessage)));
+                child: Center(child: Text(state.errorMessage)),);
           } else {
             return const SizedBox.shrink();
           }
-        })
+        },),
       ],
     );
   }

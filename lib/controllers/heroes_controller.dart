@@ -1,6 +1,6 @@
-import 'package:marvel_app/data/api_service/data_api.dart';
-import 'package:marvel_app/data/dao_service/shared_prefs.dart';
-import 'package:marvel_app/domain/models/marvel_hero.dart';
+import '../data/api_service/data_api.dart';
+import '../data/dao_service/shared_prefs.dart';
+import '../domain/models/marvel_hero.dart';
 
 class HeroesController {
   final DataApi _dataApi = DataApi();
@@ -26,7 +26,7 @@ class HeroesController {
   }
 
   Future<List<MarvelHero>> addFavoriteHero(MarvelHero hero) async {
-    _prefs.addToDatabase(hero);
+    await _prefs.addToDatabase(hero);
     favoriteHeroes.add(
       hero,
     );
@@ -34,7 +34,7 @@ class HeroesController {
   }
 
   Future<List<MarvelHero>> removeFavoriteHero(MarvelHero hero) async {
-    _prefs.removeFromDatabase(hero);
+    await _prefs.removeFromDatabase(hero);
     favoriteHeroes.remove(hero);
     return favoriteHeroes;
   }

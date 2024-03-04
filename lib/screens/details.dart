@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_list_events.dart';
-import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_list_states.dart';
-import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/theme_bloc/theme_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/theme_bloc/theme_states.dart';
-import 'package:marvel_app/domain/models/marvel_hero.dart';
-import 'package:marvel_app/utils/constants/wordings.dart';
+
+import '../domain/business/bloc/favorite_bloc/favorites_bloc.dart';
+import '../domain/business/bloc/favorite_bloc/favorites_list_events.dart';
+import '../domain/business/bloc/favorite_bloc/favorites_list_states.dart';
+import '../domain/business/bloc/theme_bloc/theme_bloc.dart';
+import '../domain/business/bloc/theme_bloc/theme_states.dart';
+import '../domain/models/marvel_hero.dart';
+import '../utils/constants/wordings.dart';
 
 class Details extends StatefulWidget {
-  const Details({super.key, required this.hero});
+  const Details({required this.hero, super.key});
   final MarvelHero hero;
 
   @override
@@ -25,7 +26,7 @@ class _DetailsState extends State<Details> {
       builder: (context, state) => Scaffold(
         backgroundColor: state is ThemeLightState
             ? Colors.white
-            : Color.fromARGB(255, 46, 46, 46),
+            : const Color.fromARGB(255, 46, 46, 46),
         appBar: AppBar(
           foregroundColor: Colors.white,
           actionsIconTheme: const IconThemeData(color: Colors.amber),
@@ -39,7 +40,8 @@ class _DetailsState extends State<Details> {
                       child: (state.favoriteHeroes.contains(widget.hero))
                           ? IconButton(
                               onPressed: () {
-                                bloc.add(FavoriteRemoveEvent(hero: widget.hero));
+                                bloc.add(
+                                    FavoriteRemoveEvent(hero: widget.hero),);
                               },
                               icon: const Icon(
                                 Icons.favorite,
@@ -54,11 +56,11 @@ class _DetailsState extends State<Details> {
                                 Icons.favorite_border,
                                 size: 32,
                               ),
-                            ));
+                            ),);
                 }
                 return const SizedBox.shrink();
               },
-            )
+            ),
 
             // ),
           ],
@@ -67,22 +69,20 @@ class _DetailsState extends State<Details> {
         body: Center(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(30, 30, 30, 100),
-            child: Container(
+            child: DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: const Color.fromARGB(255, 114, 24, 24),
                 border: Border.all(
-                    style: BorderStyle.solid,
                     color: Colors.black54,
-                    width: 0.5),
+                    width: 0.5,),
               ),
               child: Column(
                 children: [
                   Expanded(
-                    flex: 1,
                     child: Center(
                       child: Text(
-                        widget.hero.name.toString(),
+                        widget.hero.name,
                         style: GoogleFonts.oswald(
                           color: Colors.white,
                           fontSize: 24,
@@ -96,7 +96,7 @@ class _DetailsState extends State<Details> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
-                        widget.hero.image.toString(),
+                        widget.hero.image,
                         fit: BoxFit.cover,
                         width: 280,
                       ),
@@ -108,7 +108,7 @@ class _DetailsState extends State<Details> {
                       padding: const EdgeInsets.fromLTRB(40, 40, 40, 0),
                       child: Text(
                         widget.hero.description.length > 3
-                            ? widget.hero.description.toString()
+                            ? widget.hero.description
                             : Wordings.noDescription,
                         style: GoogleFonts.nunito(
                           color: Colors.white,

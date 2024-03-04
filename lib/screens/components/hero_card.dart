@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_app/domain/models/marvel_hero.dart';
-import 'package:marvel_app/utils/constants/routes.dart';
+import '../../domain/models/marvel_hero.dart';
+import '../../utils/constants/routes.dart';
 
 class HeroCard extends StatelessWidget {
-  const HeroCard({super.key, required this.heroes, required this.index});
+  const HeroCard({required this.heroes, required this.index, super.key});
   final List<MarvelHero> heroes;
   final int index;
 
@@ -34,9 +34,9 @@ class HeroCard extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 7.0),
+                    padding: const EdgeInsets.only(left: 7),
                     child: Text(
-                      heroes[index].name.toString(),
+                      heroes[index].name,
                       style: const TextStyle(
                         color: Colors.white,
                         overflow: TextOverflow.clip,
@@ -48,7 +48,6 @@ class HeroCard extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         heroes[index].id.toString().padLeft(8, '#'),
