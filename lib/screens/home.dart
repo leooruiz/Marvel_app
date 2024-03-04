@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
                   ),
                   Switch(
                     inactiveThumbColor: Colors.black,
-                    activeTrackColor: Colors.black,
+                    activeTrackColor: Color.fromARGB(255, 133, 22, 22),
                     thumbIcon: thumbIcon,
                     value:
                         _light, //TODO: Salvar preferencia do usuario no shared prefs

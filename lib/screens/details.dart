@@ -107,14 +107,14 @@ class _DetailsState extends State<Details> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(40, 40, 40, 0),
                       child: Text(
-                        widget.hero.description.length > 3
+                        widget.hero.description.length > 5
                             ? widget.hero.description.toString()
                             : Wordings.noDescription,
                         style: GoogleFonts.nunito(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize:
+                              16, //TODO: USAR UM TEXT OVERFLOW CORRETO, POIS NÃO ESTÁ CABENDO CORRETAMENTE.
                         ),
-                        overflow: TextOverflow.clip,
                       ),
                     ),
                   ),
