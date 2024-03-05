@@ -6,8 +6,8 @@ import 'package:marvel_app/domain/business/bloc/home_bloc/home_bloc.dart';
 import 'package:marvel_app/domain/business/bloc/home_bloc/home_events.dart';
 import 'package:marvel_app/domain/business/bloc/theme_bloc/theme_bloc.dart';
 import 'package:marvel_app/domain/models/marvel_hero.dart';
-import 'package:marvel_app/screens/details.dart';
-import 'package:marvel_app/screens/favorites.dart';
+import 'package:marvel_app/screens/details_screen.dart';
+import 'package:marvel_app/screens/favorites_screen.dart';
 import 'package:marvel_app/screens/home.dart';
 import 'package:marvel_app/utils/constants/routes.dart';
 
@@ -33,14 +33,14 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         routes: {
           Routes.home: (context) => const Home(),
-          Routes.favorites: (context) => const Favorites(),
+          Routes.favorites: (context) => const FavoritesScreen(),
         },
         onGenerateRoute: (settings) {
           if (settings.name == Routes.details) {
             final MarvelHero hero = settings.arguments as MarvelHero;
             return MaterialPageRoute(
               builder: (context) {
-                return Details(hero: hero);
+                return DetailsScreen(hero: hero);
               },
             );
           }
