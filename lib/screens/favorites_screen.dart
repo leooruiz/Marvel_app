@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_list_states.dart';
-import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_bloc.dart';
-import 'package:marvel_app/screens/components/hero_card.dart';
+
+import '../domain/business/bloc/favorite_bloc/favorites_bloc.dart';
+import '../domain/business/bloc/favorite_bloc/favorites_list_states.dart';
+import 'components/hero_card.dart';
 
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({super.key});
@@ -43,7 +44,7 @@ class FavoritesScreen extends StatelessWidget {
             }
             return const SizedBox.shrink();
           },
-        )
+        ),
       ],
     );
   }

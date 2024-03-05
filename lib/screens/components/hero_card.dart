@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_app/domain/models/marvel_hero.dart';
-import 'package:marvel_app/utils/constants/routes.dart';
+import '../../domain/models/marvel_hero.dart';
+import '../../utils/constants/routes.dart';
 
 class HeroCard extends StatelessWidget {
   const HeroCard({super.key, required this.hero});
@@ -33,7 +33,7 @@ class HeroCard extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 7.0),
+                    padding: const EdgeInsets.only(left: 7),
                     child: Text(
                       hero.name.toString(),
                       style: const TextStyle(
@@ -47,7 +47,6 @@ class HeroCard extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         hero.id.toString().padLeft(8, '#'),

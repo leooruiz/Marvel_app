@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:marvel_app/domain/models/marvel_hero.dart';
-import 'package:marvel_app/utils/constants/api_url.dart';
+
+import '../../domain/models/marvel_hero.dart';
+import '../../utils/constants/api_url.dart';
 
 class DataApi {
   final dio = Dio();
@@ -17,10 +18,16 @@ class DataApi {
     if (response.statusCode != null &&
         response.statusCode! > 199 &&
         response.statusCode! < 300) {
-      final List<MarvelHero> heroes = List<MarvelHero>.from(
-          response.data['data']['results'].map((e) => MarvelHero.fromMap(e)));
+      final responseList = response.data['data']['results'] as List;
+
+      final List<MarvelHero> heroes = responseList
+          .whereType<Map<String, dynamic>>()
+          .map(MarvelHero.fromMap)
+          .toList();
+
       return heroes;
     }
+    // ignore: only_throw_errors
     throw DioException;
   }
 }

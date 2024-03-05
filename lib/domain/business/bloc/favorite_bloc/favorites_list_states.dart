@@ -1,4 +1,4 @@
-import 'package:marvel_app/domain/models/marvel_hero.dart';
+import '../../../models/marvel_hero.dart';
 
 abstract class FavoritesStates {
   FavoritesStates();
