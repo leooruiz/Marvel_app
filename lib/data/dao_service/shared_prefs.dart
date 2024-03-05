@@ -5,17 +5,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../domain/models/marvel_hero.dart';
 
 class SharedPrefs {
-  List<MarvelHero> favoriteMarvelHeroes = [];
-
   Future<void> removeFromDatabase(MarvelHero hero) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getStringList('favoriteHeroes') == null) {
-      await prefs.setStringList('favoriteHeroes', []);
-    }
+
     await prefs.setString(hero.name, hero.toJson());
     final String? currentHero = prefs.getString(hero.name);
-    final List<String>? listaPrefs = prefs.getStringList('favoriteHeroes');
-    if (listaPrefs!.contains(currentHero)) {
+    final List<String> listaPrefs = prefs.getStringList('favoriteHeroes') ?? [];
+    if (listaPrefs.contains(currentHero)) {
       listaPrefs.remove(currentHero);
       await prefs.setStringList('favoriteHeroes', listaPrefs);
     }
@@ -23,30 +19,29 @@ class SharedPrefs {
 
   Future<void> addToDatabase(MarvelHero hero) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getStringList('favoriteHeroes') == null) {
-      await prefs.setStringList('favoriteHeroes', []);
-    }
+
     await prefs.setString(hero.name, hero.toJson());
     final String? currentHero = prefs.getString(hero.name);
-    final List<String>? listaPrefs = prefs.getStringList('favoriteHeroes');
-    if (!listaPrefs!.contains(currentHero)) {
+    print('AMEM: $currentHero');
+    final List<String> listaPrefs = prefs.getStringList('favoriteHeroes') ?? [];
+    if (!listaPrefs.contains(currentHero)) {
+      print('MTOHER: $hero');
       listaPrefs.add(currentHero!);
       await prefs.setStringList('favoriteHeroes', listaPrefs);
     }
-  } //COMMITAR QUANDO FUNCIONAR
+  }
 
   Future<List<String>> getDatabase() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getStringList('favoriteHeroes') == null) {
-      await prefs.setStringList('favoriteHeroes', []);
-    }
-    final List<String>? favoritesDatabase =
-        prefs.getStringList('favoriteHeroes');
-    return favoritesDatabase!;
+
+    final List<String> favoritesDatabase =
+        prefs.getStringList('favoriteHeroes') ?? [];
+    return favoritesDatabase;
   }
 
   Future<List<MarvelHero>> getMarvelHeroesFromDatabase() async {
     final List<String> database = await getDatabase();
+    final List<MarvelHero> favoriteMarvelHeroes = [];
     for (var i = 0; i < database.length; i++) {
       favoriteMarvelHeroes.add(_fromMapToHero(_fromJsonToMap(database[i])));
     }

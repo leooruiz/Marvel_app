@@ -17,6 +17,21 @@ class MarvelHero extends Equatable {
       image: '${map['thumbnail']['path']}.${map['thumbnail']['extension']}',
     );
   }
+
+  factory MarvelHero.fromLocalMap(Map<String, dynamic> map) {
+    return MarvelHero(
+      name: map['name'],
+      id: map['id'],
+      image: map['image'],
+      description: map['description'],
+    );
+  }
+  factory MarvelHero.fromLocalJson(String json) {
+    final result = jsonDecode(json);
+    print(result);
+    return MarvelHero.fromLocalMap(result);
+  }
+
   final String name;
   final int id;
   final String description;

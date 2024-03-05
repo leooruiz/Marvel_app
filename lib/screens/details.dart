@@ -10,15 +10,10 @@ import '../domain/business/bloc/theme_bloc/theme_states.dart';
 import '../domain/models/marvel_hero.dart';
 import '../utils/constants/wordings.dart';
 
-class Details extends StatefulWidget {
+class Details extends StatelessWidget {
   const Details({required this.hero, super.key});
   final MarvelHero hero;
 
-  @override
-  State<Details> createState() => _DetailsState();
-}
-
-class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     final bloc = context.watch<FavoritesBloc>();
@@ -35,13 +30,14 @@ class _DetailsState extends State<Details> {
             BlocBuilder<FavoritesBloc, FavoritesStates>(
               builder: (context, state) {
                 if (state is FavoriteSuccessState) {
+                  print(state.favoriteHeroes);
                   return Padding(
                       padding: const EdgeInsets.only(right: 10),
-                      child: (state.favoriteHeroes.contains(widget.hero))
+                      child: (state.favoriteHeroes.contains(hero))
                           ? IconButton(
                               onPressed: () {
                                 bloc.add(
-                                    FavoriteRemoveEvent(hero: widget.hero),);
+                                    FavoriteRemoveEvent(hero: hero),);
                               },
                               icon: const Icon(
                                 Icons.favorite,
@@ -50,7 +46,7 @@ class _DetailsState extends State<Details> {
                             )
                           : IconButton(
                               onPressed: () {
-                                bloc.add(FavoriteAddEvent(hero: widget.hero));
+                                bloc.add(FavoriteAddEvent(hero: hero));
                               },
                               icon: const Icon(
                                 Icons.favorite_border,
@@ -82,7 +78,7 @@ class _DetailsState extends State<Details> {
                   Expanded(
                     child: Center(
                       child: Text(
-                        widget.hero.name,
+                        hero.name,
                         style: GoogleFonts.oswald(
                           color: Colors.white,
                           fontSize: 24,
@@ -96,7 +92,7 @@ class _DetailsState extends State<Details> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
-                        widget.hero.image,
+                        hero.image,
                         fit: BoxFit.cover,
                         width: 280,
                       ),
@@ -107,8 +103,8 @@ class _DetailsState extends State<Details> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(40, 40, 40, 0),
                       child: Text(
-                        widget.hero.description.length > 3
-                            ? widget.hero.description
+                        hero.description.length > 3
+                            ? hero.description
                             : Wordings.noDescription,
                         style: GoogleFonts.nunito(
                           color: Colors.white,

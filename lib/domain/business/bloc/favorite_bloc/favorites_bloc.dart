@@ -14,7 +14,7 @@ class FavoritesBloc extends Bloc<FavoritesEvents, FavoritesStates> {
       Emitter<FavoritesStates> emit,
       FavoriteRemoveEvent event,
     ) async {
-      if (_repo.favoriteHeroes.contains(event.hero)) {
+      if ((await _repo.getFavoriteHeroes()).contains(event.hero)) {
         emit(
           FavoriteSuccessState(
             favoriteHeroes: await _repo.removeFavoriteHero(event.hero),
@@ -27,7 +27,7 @@ class FavoritesBloc extends Bloc<FavoritesEvents, FavoritesStates> {
       Emitter<FavoritesStates> emit,
       FavoriteAddEvent event,
     ) async {
-      if (!_repo.favoriteHeroes.contains(event.hero)) {
+      if (!(await _repo.getFavoriteHeroes()).contains(event.hero)) {
         emit(
           FavoriteSuccessState(
             favoriteHeroes: await _repo.addFavoriteHero(event.hero),

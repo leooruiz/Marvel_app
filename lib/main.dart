@@ -37,8 +37,8 @@ class MyApp extends StatelessWidget {
           Routes.favorites: (context) => const Favorites(),
         },
         onGenerateRoute: (settings) {
-          if (settings.name == Routes.details) {
-            final MarvelHero hero = settings.arguments as MarvelHero;
+          if (settings.name == Routes.details && settings.arguments != null) {
+            final MarvelHero hero = settings.arguments! as MarvelHero;
             return MaterialPageRoute(
               builder: (context) {
                 return Details(hero: hero);
