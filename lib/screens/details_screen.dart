@@ -9,23 +9,18 @@ import 'package:marvel_app/domain/business/bloc/theme_bloc/theme_states.dart';
 import 'package:marvel_app/domain/models/marvel_hero.dart';
 import 'package:marvel_app/utils/constants/wordings.dart';
 
-class Details extends StatefulWidget {
-  const Details({super.key, required this.hero});
+class DetailsScreen extends StatelessWidget {
+  const DetailsScreen({super.key, required this.hero});
   final MarvelHero hero;
 
   @override
-  State<Details> createState() => _DetailsState();
-}
-
-class _DetailsState extends State<Details> {
-  @override
   Widget build(BuildContext context) {
-    final bloc = context.watch<FavoritesBloc>();
+    final bloc = context.read<FavoritesBloc>();
     return BlocBuilder<ThemeBloc, ThemeStates>(
       builder: (context, state) => Scaffold(
         backgroundColor: state is ThemeLightState
             ? Colors.white
-            : Color.fromARGB(255, 46, 46, 46),
+            : const Color.fromARGB(255, 46, 46, 46),
         appBar: AppBar(
           foregroundColor: Colors.white,
           actionsIconTheme: const IconThemeData(color: Colors.amber),
@@ -36,10 +31,10 @@ class _DetailsState extends State<Details> {
                 if (state is FavoriteSuccessState) {
                   return Padding(
                       padding: const EdgeInsets.only(right: 10),
-                      child: (state.favoriteHeroes.contains(widget.hero))
+                      child: (state.favoriteHeroes.contains(hero))
                           ? IconButton(
                               onPressed: () {
-                                bloc.add(FavoriteRemoveEvent(hero: widget.hero));
+                                bloc.add(FavoriteRemoveEvent(hero: hero));
                               },
                               icon: const Icon(
                                 Icons.favorite,
@@ -48,7 +43,7 @@ class _DetailsState extends State<Details> {
                             )
                           : IconButton(
                               onPressed: () {
-                                bloc.add(FavoriteAddEvent(hero: widget.hero));
+                                bloc.add(FavoriteAddEvent(hero: hero));
                               },
                               icon: const Icon(
                                 Icons.favorite_border,
@@ -82,7 +77,7 @@ class _DetailsState extends State<Details> {
                     flex: 1,
                     child: Center(
                       child: Text(
-                        widget.hero.name.toString(),
+                        hero.name.toString(),
                         style: GoogleFonts.oswald(
                           color: Colors.white,
                           fontSize: 24,
@@ -96,7 +91,7 @@ class _DetailsState extends State<Details> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
-                        widget.hero.image.toString(),
+                        hero.image.toString(),
                         fit: BoxFit.cover,
                         width: 280,
                       ),
@@ -107,8 +102,8 @@ class _DetailsState extends State<Details> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(40, 40, 40, 0),
                       child: Text(
-                        widget.hero.description.length > 3
-                            ? widget.hero.description.toString()
+                        hero.description.length > 3
+                            ? hero.description.toString()
                             : Wordings.noDescription,
                         style: GoogleFonts.nunito(
                           color: Colors.white,

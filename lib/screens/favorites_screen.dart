@@ -4,8 +4,8 @@ import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_list_sta
 import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_bloc.dart';
 import 'package:marvel_app/screens/components/hero_card.dart';
 
-class Favorites extends StatelessWidget {
-  const Favorites({super.key});
+class FavoritesScreen extends StatelessWidget {
+  const FavoritesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +21,27 @@ class Favorites extends StatelessWidget {
                   ),
                 ),
               );
-            } else if (state is FavoriteSuccessState) {
+            }
+            if (state is FavoriteSuccessState &&
+                state.favoriteHeroes.isNotEmpty) {
               return SliverList.builder(
                 itemBuilder: (context, index) {
-                  return HeroCard(heroes: state.favoriteHeroes, index: index);
+                  return HeroCard(
+                    hero: state.favoriteHeroes[index],
+                  );
                 },
                 itemCount: state.favoriteHeroes.length,
               );
-            } else if (state is FavoriteErrorState) {
-              return SliverToBoxAdapter(child: Text(state.errorMessage));
-            } else {
-              return const SizedBox.shrink();
             }
+            if (state is FavoriteSuccessState && state.favoriteHeroes.isEmpty) {
+              return SliverList.builder(
+                  itemBuilder: (context, index) => const SizedBox.shrink());
+            }
+            if (state is FavoriteErrorState) {
+              return SliverFillRemaining(
+                  child: Center(child: Text(state.errorMessage)));
+            }
+            return const SizedBox.shrink();
           },
         )
       ],
