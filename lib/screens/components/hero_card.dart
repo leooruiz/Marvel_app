@@ -3,7 +3,7 @@ import '../../domain/models/marvel_hero.dart';
 import '../../utils/constants/routes.dart';
 
 class HeroCard extends StatelessWidget {
-  const HeroCard({super.key, required this.hero});
+  const HeroCard({required this.hero, super.key});
   final MarvelHero hero;
 
   @override
@@ -18,8 +18,8 @@ class HeroCard extends StatelessWidget {
         child: Ink(
           child: InkWell(
             borderRadius: BorderRadius.circular(10),
-            onTap: () => Navigator.pushNamed(context, Routes.details,
-                arguments: hero),
+            onTap: () =>
+                Navigator.pushNamed(context, Routes.details, arguments: hero),
             child: Row(
               children: [
                 Expanded(
@@ -35,7 +35,7 @@ class HeroCard extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 7),
                     child: Text(
-                      hero.name.toString(),
+                      hero.name,
                       style: const TextStyle(
                         color: Colors.white,
                         overflow: TextOverflow.clip,
