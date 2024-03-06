@@ -17,31 +17,32 @@ class FavoritesBloc extends Bloc<FavoritesEvents, FavoritesStates> {
       (event, emit) => removeHero(emit, event),
     );
   }
-    Future<void> removeHero(
-      Emitter<FavoritesStates> emit,
-      FavoriteRemoveEvent event,
-    ) async {
-      if ((await _repo.getFavoriteHeroes()).contains(event.hero)) {
-        emit(
-          FavoriteSuccessState(
-            favoriteHeroes: await _repo.removeFavoriteHero(event.hero),
-          ),
-        );
-      }
+  Future<void> removeHero(
+    Emitter<FavoritesStates> emit,
+    FavoriteRemoveEvent event,
+  ) async {
+    if ((await _repo.getFavoriteHeroes()).contains(event.hero)) {
+      emit(
+        FavoriteSuccessState(
+          favoriteHeroes: await _repo.removeFavoriteHero(event.hero),
+        ),
+      );
     }
+  }
 
-    Future<void> addHero(
-      Emitter<FavoritesStates> emit,
-      FavoriteAddEvent event,
-    ) async {
-      if (!(await _repo.getFavoriteHeroes()).contains(event.hero)) {
-        emit(
-          FavoriteSuccessState(
-            favoriteHeroes: await _repo.addFavoriteHero(event.hero),
-          ),
-        );
-      }
+  final HeroesRepository _repo = HeroesRepository();
+  Future<void> addHero(
+    Emitter<FavoritesStates> emit,
+    FavoriteAddEvent event,
+  ) async {
+    if (!(await _repo.getFavoriteHeroes()).contains(event.hero)) {
+      emit(
+        FavoriteSuccessState(
+          favoriteHeroes: await _repo.addFavoriteHero(event.hero),
+        ),
+      );
     }
+  }
 
   Future<void> getHeroes(Emitter<FavoritesStates> emit) async {
     final List<MarvelHero> heroes = await _repo.getFavoriteHeroes();

@@ -2,7 +2,7 @@ import '../data/api_service/data_api.dart';
 import '../data/dao_service/shared_prefs.dart';
 import '../domain/models/marvel_hero.dart';
 
-class HeroesRepository {
+class HeroesRepository {//TODO: MOVER PARA DATA
   final DataApi _dataApi = DataApi();
   final SharedPrefs _prefs = SharedPrefs();
 
