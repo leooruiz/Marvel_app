@@ -7,9 +7,16 @@ class DataApi {
   final dio = Dio();
 
   void configureDio() {
-    dio.options.baseUrl = ApiUrl.url;
-    dio.options.connectTimeout = const Duration(seconds: 5);
-    dio.options.receiveTimeout = const Duration(seconds: 5);
+    dio.options = BaseOptions(
+      baseUrl: ApiUrl.url,
+      queryParameters: {
+        'ts': '123',
+        'apikey': '044479a19929992d86c53efb86add0a5',
+        'hash': 'd7d2e2160357184800ff55f0b845be50',
+      },
+      connectTimeout: const Duration(seconds: 6),
+      receiveTimeout: const Duration(seconds: 6),
+    );
   }
 
   Future<List<MarvelHero>> getHeroesList() async {
