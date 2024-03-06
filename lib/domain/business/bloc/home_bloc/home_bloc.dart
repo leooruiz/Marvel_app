@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../data/heroes_controller.dart';
+import '../../../../data/heroes_repository.dart';
 import 'home_events.dart';
 import 'home_states.dart';
 

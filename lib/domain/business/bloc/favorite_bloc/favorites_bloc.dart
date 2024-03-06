@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../data/heroes_controller.dart';
+import '../../../../data/heroes_repository.dart';
 import '../../../models/marvel_hero.dart';
 import 'favorites_list_events.dart';
 import 'favorites_list_states.dart';
