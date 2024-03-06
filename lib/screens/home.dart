@@ -84,9 +84,8 @@ class _HomeState extends State<Home> {
                         inactiveThumbColor: Colors.black,
                         activeTrackColor: Colors.black,
                         thumbIcon: thumbIcon,
-                        value: state is ThemeLightState
-                            ? true
-                            : false, //TODO: Salvar preferencia do usuario no shared prefs
+                        value: state is ThemeLightState ||
+                            false, //TODO: Salvar preferencia do usuario no shared prefs
                         onChanged: (bool value) {
                           themeBloc.add(
                             ThemeChangeEvent(
