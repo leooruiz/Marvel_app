@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/theme_bloc/theme_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/theme_bloc/theme_events.dart';
-import 'package:marvel_app/domain/business/bloc/theme_bloc/theme_states.dart';
-import 'package:marvel_app/screens/components/heroes_list.dart';
-import 'package:marvel_app/screens/favorites.dart';
-import 'package:marvel_app/utils/constants/wordings.dart';
+import '../domain/business/bloc/theme_bloc/theme_bloc.dart';
+import '../domain/business/bloc/theme_bloc/theme_events.dart';
+import '../domain/business/bloc/theme_bloc/theme_states.dart';
+import '../utils/constants/wordings.dart';
+
+import 'components/heroes_list_page.dart';
+import 'favorites_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -78,7 +79,7 @@ class _HomeState extends State<Home> {
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
                         ),
-                      ), 
+                      ),
                       Switch(
                         inactiveThumbColor: Colors.black,
                         activeTrackColor: Colors.black,

@@ -36,11 +36,13 @@ class FavoritesScreen extends StatelessWidget {
             }
             if (state is FavoriteSuccessState && state.favoriteHeroes.isEmpty) {
               return SliverList.builder(
-                  itemBuilder: (context, index) => const SizedBox.shrink());
+                itemBuilder: (context, index) => const SizedBox.shrink(),
+              );
             }
             if (state is FavoriteErrorState) {
               return SliverFillRemaining(
-                  child: Center(child: Text(state.errorMessage)));
+                child: Center(child: Text(state.errorMessage)),
+              );
             }
             return const SizedBox.shrink();
           },

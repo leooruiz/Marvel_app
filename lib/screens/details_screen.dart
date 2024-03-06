@@ -1,17 +1,17 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_list_events.dart';
-import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_list_states.dart';
-import 'package:marvel_app/domain/business/bloc/favorite_bloc/favorites_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/theme_bloc/theme_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/theme_bloc/theme_states.dart';
-import 'package:marvel_app/domain/models/marvel_hero.dart';
-import 'package:marvel_app/utils/constants/wordings.dart';
+
+import '../domain/business/bloc/favorite_bloc/favorites_bloc.dart';
+import '../domain/business/bloc/favorite_bloc/favorites_list_events.dart';
+import '../domain/business/bloc/favorite_bloc/favorites_list_states.dart';
+import '../domain/business/bloc/theme_bloc/theme_bloc.dart';
+import '../domain/business/bloc/theme_bloc/theme_states.dart';
+import '../domain/models/marvel_hero.dart';
+import '../utils/constants/wordings.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key, required this.hero});
+  const DetailsScreen({required this.hero, super.key});
   final MarvelHero hero;
 
   @override
@@ -50,11 +50,11 @@ class DetailsScreen extends StatelessWidget {
                                 Icons.favorite_border,
                                 size: 32,
                               ),
-                            ));
+                            ),);
                 }
                 return const SizedBox.shrink();
               },
-            )
+            ),
 
             // ),
           ],
@@ -63,22 +63,20 @@ class DetailsScreen extends StatelessWidget {
         body: Center(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(30, 30, 30, 100),
-            child: Container(
+            child: DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: const Color.fromARGB(255, 114, 24, 24),
                 border: Border.all(
-                    style: BorderStyle.solid,
                     color: Colors.black54,
-                    width: 0.5),
+                    width: 0.5,),
               ),
               child: Column(
                 children: [
                   Expanded(
-                    flex: 1,
                     child: Center(
                       child: Text(
-                        hero.name.toString(),
+                        hero.name,
                         style: GoogleFonts.oswald(
                           color: Colors.white,
                           fontSize: 24,
@@ -92,7 +90,7 @@ class DetailsScreen extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
-                        hero.image.toString(),
+                        hero.image,
                         fit: BoxFit.cover,
                         width: 280,
                       ),
@@ -104,7 +102,7 @@ class DetailsScreen extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(40, 40, 40, 0),
                       child: Text(
                         hero.description.length > 3
-                            ? hero.description.toString()
+                            ? hero.description
                             : Wordings.noDescription,
                         style: GoogleFonts.nunito(
                           color: Colors.white,

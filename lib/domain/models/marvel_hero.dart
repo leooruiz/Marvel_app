@@ -28,7 +28,6 @@ class MarvelHero extends Equatable {
   }
   factory MarvelHero.fromLocalJson(String json) {
     final result = jsonDecode(json);
-    print(result);
     return MarvelHero.fromLocalMap(result);
   }
 

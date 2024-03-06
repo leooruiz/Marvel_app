@@ -22,10 +22,8 @@ class SharedPrefs {
 
     await prefs.setString(hero.name, hero.toJson());
     final String? currentHero = prefs.getString(hero.name);
-    print('AMEM: $currentHero');
     final List<String> listaPrefs = prefs.getStringList('favoriteHeroes') ?? [];
     if (!listaPrefs.contains(currentHero)) {
-      print('MTOHER: $hero');
       listaPrefs.add(currentHero!);
       await prefs.setStringList('favoriteHeroes', listaPrefs);
     }
@@ -48,10 +46,7 @@ class SharedPrefs {
     return favoriteMarvelHeroes;
   }
 
-  Map<String, dynamic> _fromJsonToMap(String json) {
-    final Map<String, dynamic> map = jsonDecode(json);
-    return map;
-  }
+  Map<String, dynamic> _fromJsonToMap(String source) => jsonDecode(source);
 
   MarvelHero _fromMapToHero(Map<String, dynamic> map) {
     final MarvelHero hero = MarvelHero(
