@@ -28,8 +28,6 @@ class _HomeState extends State<Home> {
     });
   }
 
-  bool _light = true;
-
   final MaterialStateProperty<Icon?> thumbIcon =
       MaterialStateProperty.resolveWith<Icon>((states) {
     if (states.contains(MaterialState.selected)) {
@@ -45,7 +43,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final themeBloc = context.watch<ThemeBloc>();
+    final themeBloc = context.read<ThemeBloc>();
     return BlocBuilder<ThemeBloc, ThemeStates>(
       builder: (context, state) {
         return Scaffold(
@@ -85,14 +83,14 @@ class _HomeState extends State<Home> {
                         inactiveThumbColor: Colors.black,
                         activeTrackColor: Colors.black,
                         thumbIcon: thumbIcon,
-                        value:
-                            _light, //TODO: Salvar preferencia do usuario no shared prefs
+                        value: state is ThemeLightState
+                            ? true
+                            : false, //TODO: Salvar preferencia do usuario no shared prefs
                         onChanged: (bool value) {
-                          themeBloc.add(ThemeChangeEvent(isLight: _light));
-                          setState(
-                            () {
-                              _light = value;
-                            },
+                          themeBloc.add(
+                            ThemeChangeEvent(
+                              isLight: !value,
+                            ),
                           );
                         },
                       ),

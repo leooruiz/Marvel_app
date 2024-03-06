@@ -4,7 +4,7 @@ import 'theme_events.dart';
 import 'theme_states.dart';
 
 class ThemeBloc extends Bloc<ThemeEvents, ThemeStates> {
-  ThemeBloc() : super(ThemeLightState(isLight: true)) {
+  ThemeBloc() : super(ThemeLightState()) {
     on<ThemeChangeEvent>(
       (event, emit) => changeTheme(emit, event),
     );
@@ -12,9 +12,12 @@ class ThemeBloc extends Bloc<ThemeEvents, ThemeStates> {
 
   void changeTheme(Emitter<ThemeStates> emit, ThemeChangeEvent event) {
     if (event.isLight) {
-      emit(ThemeDarkState(isLight: false));
-    } else {
-      emit(ThemeLightState(isLight: true));
+      emit(ThemeDarkState());
+      //TODO: Shared prefs aqui.
+    }
+    if (!event.isLight) {
+      emit(ThemeLightState());
+      //TODO: Shared prefs aqui.
     }
   }
 }
