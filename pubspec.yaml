@@ -20,7 +20,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=3.2.6 <4.0.0"
-  flutter: ">=3.16.9 <4.0.0" 
+  flutter: ">=3.16.9 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -29,15 +29,14 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  bloc:
+  bloc: ^8.0.0
   cupertino_icons: ^1.0.2
-  dio:
+  dio: ^5.4.0
   equatable: ^2.0.5
   flutter:
     sdk: flutter
-  flutter_bloc:
+  flutter_bloc: ^8.0.0
   google_fonts: ^6.1.0
-  provider:
   shared_preferences:
 
 dev_dependencies:
