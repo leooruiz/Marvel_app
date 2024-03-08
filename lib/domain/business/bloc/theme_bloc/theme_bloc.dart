@@ -6,11 +6,14 @@ import 'theme_states.dart';
 class ThemeBloc extends Bloc<ThemeEvents, ThemeStates> {
   ThemeBloc() : super(ThemeLightState()) {
     on<ThemeChangeEvent>(
-      (event, emit) => changeTheme(emit, event),
+      changeTheme,
     );
   }
 
-  void changeTheme(Emitter<ThemeStates> emit, ThemeChangeEvent event) {
+  void changeTheme(
+    ThemeChangeEvent event,
+    Emitter<ThemeStates> emit,
+  ) {
     if (event.isLight) {
       emit(ThemeDarkState());
       //TODO: Shared prefs aqui.
