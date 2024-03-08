@@ -4,7 +4,6 @@ import '../domain/business/bloc/theme_bloc/theme_bloc.dart';
 import '../domain/business/bloc/theme_bloc/theme_events.dart';
 import '../domain/business/bloc/theme_bloc/theme_states.dart';
 import '../utils/constants/wordings.dart';
-
 import 'components/heroes_list_page.dart';
 import 'favorites_screen.dart';
 
@@ -34,10 +33,12 @@ class _HomeState extends State<Home> {
     if (states.contains(MaterialState.selected)) {
       return const Icon(
         Icons.light_mode_sharp,
+        color: Colors.black,
       );
     } else {
       return const Icon(
         Icons.dark_mode,
+        color: Colors.white,
       );
     }
   });
@@ -82,10 +83,11 @@ class _HomeState extends State<Home> {
                       ),
                       Switch(
                         inactiveThumbColor: Colors.black,
-                        activeTrackColor: Colors.black,
+                        inactiveTrackColor: Colors.black12,
+                        activeTrackColor: Colors.grey,
                         thumbIcon: thumbIcon,
-                        value: state is ThemeLightState ||
-                            false, //TODO: Salvar preferencia do usuario no shared prefs
+                        value: state
+                            is ThemeLightState, //TODO: Salvar preferencia do usuario no shared prefs
                         onChanged: (bool value) {
                           themeBloc.add(
                             ThemeChangeEvent(
