@@ -15,7 +15,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeStates> {
   int limit = 15;
   bool isLoading = false;
 
-  Future<void> getHeroes(Emitter emit) async {
+  Future<void> getHeroes(Emitter<HomeStates> emit) async {
     try {
       emit(HomeLoadingState());
       final heroes = await _heroesController.loadAllHeroes();
