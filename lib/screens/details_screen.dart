@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../domain/business/bloc/favorite_bloc/favorites_bloc.dart';
 import '../domain/business/bloc/favorite_bloc/favorites_list_events.dart';
 import '../domain/business/bloc/favorite_bloc/favorites_list_states.dart';
@@ -77,7 +75,7 @@ class DetailsScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         hero.name,
-                        style: GoogleFonts.oswald(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 24,
                         ),
@@ -104,7 +102,7 @@ class DetailsScreen extends StatelessWidget {
                         hero.description.length > 3
                             ? hero.description
                             : Wordings.noDescription,
-                        style: GoogleFonts.nunito(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                         ),
