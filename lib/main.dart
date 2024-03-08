@@ -10,6 +10,7 @@ import 'domain/models/marvel_hero.dart';
 import 'screens/details_screen.dart';
 import 'screens/favorites_screen.dart';
 import 'screens/home.dart';
+import 'themes/themes.dart';
 import 'utils/constants/routes.dart';
 
 void main() {
@@ -48,9 +49,7 @@ class MyApp extends StatelessWidget {
           return null;
         },
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          useMaterial3: true,
-        ),
+        theme: themes,
         initialRoute: Routes.home,
         home: const Home(),
       ),

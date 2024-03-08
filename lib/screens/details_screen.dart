@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../domain/business/bloc/favorite_bloc/favorites_bloc.dart';
 import '../domain/business/bloc/favorite_bloc/favorites_list_events.dart';
 import '../domain/business/bloc/favorite_bloc/favorites_list_states.dart';
 import '../domain/business/bloc/theme_bloc/theme_bloc.dart';
 import '../domain/business/bloc/theme_bloc/theme_states.dart';
 import '../domain/models/marvel_hero.dart';
+import '../themes/app_colors.dart';
 import '../utils/constants/wordings.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -17,38 +19,35 @@ class DetailsScreen extends StatelessWidget {
     final bloc = context.read<FavoritesBloc>();
     return BlocBuilder<ThemeBloc, ThemeStates>(
       builder: (context, state) => Scaffold(
-        backgroundColor: state is ThemeLightState
-            ? Colors.white
-            : const Color.fromARGB(255, 46, 46, 46),
+        backgroundColor:
+            state is ThemeLightState ? AppColors.white : AppColors.dark,
         appBar: AppBar(
-          foregroundColor: Colors.white,
-          actionsIconTheme: const IconThemeData(color: Colors.amber),
-          backgroundColor: const Color.fromARGB(255, 114, 24, 24),
           actions: [
             BlocBuilder<FavoritesBloc, FavoritesStates>(
               builder: (context, state) {
                 if (state is FavoriteSuccessState) {
                   return Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: (state.favoriteHeroes.contains(hero))
-                          ? IconButton(
-                              onPressed: () {
-                                bloc.add(FavoriteRemoveEvent(hero: hero));
-                              },
-                              icon: const Icon(
-                                Icons.favorite,
-                                size: 30,
-                              ),
-                            )
-                          : IconButton(
-                              onPressed: () {
-                                bloc.add(FavoriteAddEvent(hero: hero));
-                              },
-                              icon: const Icon(
-                                Icons.favorite_border,
-                                size: 32,
-                              ),
-                            ),);
+                    padding: const EdgeInsets.only(right: 10),
+                    child: (state.favoriteHeroes.contains(hero))
+                        ? IconButton(
+                            onPressed: () {
+                              bloc.add(FavoriteRemoveEvent(hero: hero));
+                            },
+                            icon: const Icon(
+                              Icons.favorite,
+                              size: 30,
+                            ),
+                          )
+                        : IconButton(
+                            onPressed: () {
+                              bloc.add(FavoriteAddEvent(hero: hero));
+                            },
+                            icon: const Icon(
+                              Icons.favorite_border,
+                              size: 32,
+                            ),
+                          ),
+                  );
                 }
                 return const SizedBox.shrink();
               },
@@ -64,10 +63,11 @@ class DetailsScreen extends StatelessWidget {
             child: DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: const Color.fromARGB(255, 114, 24, 24),
+                color: AppColors.darkRed,
                 border: Border.all(
-                    color: Colors.black54,
-                    width: 0.5,),
+                  color: AppColors.dark,
+                  width: 0.5,
+                ),
               ),
               child: Column(
                 children: [
@@ -75,10 +75,7 @@ class DetailsScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         hero.name,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                        ),
+                        style: Theme.of(context).textTheme.titleLarge,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -102,10 +99,7 @@ class DetailsScreen extends StatelessWidget {
                         hero.description.length > 3
                             ? hero.description
                             : Wordings.noDescription,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
+                        style: Theme.of(context).textTheme.bodyLarge,
                         overflow: TextOverflow.clip,
                       ),
                     ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../domain/models/marvel_hero.dart';
+import '../../themes/app_colors.dart';
 import '../../utils/constants/routes.dart';
 
 class HeroCard extends StatelessWidget {
@@ -11,10 +13,10 @@ class HeroCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
       child: Card(
-        color: const Color.fromARGB(255, 133, 22, 22),
+        color: AppColors.redCard,
         clipBehavior: Clip.antiAlias,
         elevation: 10,
-        shadowColor: Colors.black,
+        shadowColor: AppColors.dark,
         child: Ink(
           child: InkWell(
             borderRadius: BorderRadius.circular(10),
@@ -36,11 +38,8 @@ class HeroCard extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 7),
                     child: Text(
                       hero.name,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        overflow: TextOverflow.clip,
-                        fontSize: 16,
-                      ),
+                      style: Theme.of(context).textTheme.titleSmall,
+                      overflow: TextOverflow.clip,
                     ),
                   ),
                 ),
@@ -51,7 +50,7 @@ class HeroCard extends StatelessWidget {
                       Text(
                         hero.id.toString().padLeft(8, '#'),
                         style: const TextStyle(
-                          color: Color.fromARGB(130, 255, 255, 255),
+                          color: AppColors.greyId,
                         ),
                       ),
                     ],

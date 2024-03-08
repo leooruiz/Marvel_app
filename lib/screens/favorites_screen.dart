@@ -17,9 +17,7 @@ class FavoritesScreen extends StatelessWidget {
             if (state is FavoriteLoadState) {
               return const SliverFillRemaining(
                 child: Center(
-                  child: CircularProgressIndicator(
-                    color: Color.fromARGB(255, 179, 0, 0),
-                  ),
+                  child: CircularProgressIndicator(),
                 ),
               );
             }

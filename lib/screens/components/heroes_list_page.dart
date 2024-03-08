@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../domain/business/bloc/home_bloc/home_bloc.dart';
 import '../../domain/business/bloc/home_bloc/home_states.dart';
 import 'hero_card.dart';
@@ -16,9 +17,7 @@ class HeroesListPage extends StatelessWidget {
             if (state is HomeLoadingState) {
               return const SliverFillRemaining(
                 child: Center(
-                  child: CircularProgressIndicator(
-                    color: Color.fromARGB(255, 179, 0, 0),
-                  ),
+                  child: CircularProgressIndicator(),
                 ),
               );
             }
@@ -34,7 +33,8 @@ class HeroesListPage extends StatelessWidget {
             }
             if (state is HomeErrorState) {
               return SliverFillRemaining(
-                  child: Center(child: Text(state.errorMessage)),);
+                child: Center(child: Text(state.errorMessage)),
+              );
             }
             return const SizedBox.shrink();
           },
