@@ -24,7 +24,7 @@ class Favorites extends StatelessWidget {
             } else if (state is FavoriteSuccessState) {
               return SliverList.builder(
                 itemBuilder: (context, index) {
-                  return HeroCard(heroes: state.favoriteHeroes, index: index);
+                  return HeroCard(hero: state.favoriteHeroes[index]);
                 },
                 itemCount: state.favoriteHeroes.length,
               );

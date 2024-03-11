@@ -22,7 +22,7 @@ class HeroesList extends StatelessWidget {
             slivers: [
               SliverList.builder(
                 itemBuilder: (context, index) {
-                  return HeroCard(heroes: homeBloc.heroes, index: index);
+                  return HeroCard(hero: homeBloc.heroes[index]);
                 },
                 itemCount: homeBloc.heroes.length,
               ),
@@ -51,7 +51,7 @@ class HeroesList extends StatelessWidget {
               slivers: [
                 SliverList.builder(
                   itemBuilder: (context, index) {
-                    return HeroCard(heroes: homeBloc.heroes, index: index);
+                    return HeroCard(hero: homeBloc.heroes[index]);
                   },
                   itemCount: homeBloc.heroes.length,
                 ),
