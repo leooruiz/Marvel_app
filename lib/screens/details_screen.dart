@@ -27,7 +27,7 @@ class DetailsScreen extends StatelessWidget {
               builder: (context, state) {
                 if (state is FavoriteSuccessState) {
                   return Padding(
-                    padding: const EdgeInsets.only(right: 10),
+                    padding: const EdgeInsets.only(right: 15),
                     child: (state.favoriteHeroes.contains(hero))
                         ? IconButton(
                             onPressed: () {
@@ -35,7 +35,7 @@ class DetailsScreen extends StatelessWidget {
                             },
                             icon: const Icon(
                               Icons.favorite,
-                              size: 30,
+                              size: 32,
                             ),
                           )
                         : IconButton(
@@ -43,6 +43,7 @@ class DetailsScreen extends StatelessWidget {
                               bloc.add(FavoriteAddEvent(hero: hero));
                             },
                             icon: const Icon(
+                              color: AppColors.white,
                               Icons.favorite_border,
                               size: 32,
                             ),
