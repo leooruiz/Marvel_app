@@ -1,9 +1,3 @@
 class ApiUrl {
-  static const hash = 'd7d2e2160357184800ff55f0b845be50';
-  static const apiKey = '044479a19929992d86c53efb86add0a5';
-  static const ts = '123';
-  static const limit = '20';
-  static const url =
-      'https://gateway.marvel.com/v1/public/characters?ts=$ts&apikey=$apiKey&hash=$hash&limit=$limit'; //TODO: procurar e entender o que é o ts da url
+  static const url = 'https://gateway.marvel.com/v1/public/characters?';
 }
-// https://gateway.marvel.com/v1/public/characters?ts=123&apikey=044479a19929992d86c53efb86add0a5&hash=d7d2e2160357184800ff55f0b845be50

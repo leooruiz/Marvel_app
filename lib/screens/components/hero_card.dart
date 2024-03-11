@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_app/domain/models/marvel_hero.dart';
-import 'package:marvel_app/utils/constants/routes.dart';
+
+import '../../domain/models/marvel_hero.dart';
+import '../../themes/app_colors.dart';
+import '../../utils/constants/routes.dart';
 
 class HeroCard extends StatelessWidget {
-  const HeroCard({super.key, required this.hero});
+  const HeroCard({required this.hero, super.key});
   final MarvelHero hero;
 
   @override
@@ -11,15 +13,15 @@ class HeroCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
       child: Card(
-        color: const Color.fromARGB(255, 133, 22, 22),
+        color: AppColors.redCard,
         clipBehavior: Clip.antiAlias,
         elevation: 10,
-        shadowColor: Colors.black,
+        shadowColor: AppColors.dark,
         child: Ink(
-          height: 125,
           child: InkWell(
             borderRadius: BorderRadius.circular(10),
-            onTap: () => Navigator.pushNamed(context, Routes.details, arguments: hero),
+            onTap: () =>
+                Navigator.pushNamed(context, Routes.details, arguments: hero),
             child: Row(
               children: [
                 Expanded(
@@ -27,32 +29,28 @@ class HeroCard extends StatelessWidget {
                   child: Image.network(
                     hero.image,
                     fit: BoxFit.cover,
-                    height: 150,
+                    height: 100,
                   ),
                 ),
                 Expanded(
                   flex: 3,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 7.0),
+                    padding: const EdgeInsets.only(left: 7),
                     child: Text(
-                      hero.name.toString(),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        overflow: TextOverflow.clip,
-                        fontSize: 16,
-                      ),
+                      hero.name,
+                      style: Theme.of(context).textTheme.titleSmall,
+                      overflow: TextOverflow.clip,
                     ),
                   ),
                 ),
                 Expanded(
                   flex: 2,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         hero.id.toString().padLeft(8, '#'),
                         style: const TextStyle(
-                          color: Color.fromARGB(130, 255, 255, 255),
+                          color: AppColors.greyId,
                         ),
                       ),
                     ],

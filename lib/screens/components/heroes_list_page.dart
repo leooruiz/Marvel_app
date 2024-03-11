@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/home_bloc/home_bloc.dart';
-import 'package:marvel_app/domain/business/bloc/home_bloc/home_states.dart';
-import 'package:marvel_app/screens/components/hero_card.dart';
 
-class HeroesList extends StatelessWidget {
-  const HeroesList({super.key});
+import '../../domain/business/bloc/home_bloc/home_bloc.dart';
+import '../../domain/business/bloc/home_bloc/home_states.dart';
+import 'hero_card.dart';
+
+class HeroesListPage extends StatelessWidget {
+  const HeroesListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,37 +27,36 @@ class HeroesList extends StatelessWidget {
                 },
                 itemCount: homeBloc.heroes.length,
               ),
-              homeBloc.isFirstFetch
-                  ? const SliverFillRemaining(
-                      child: Center(
-                          child: CircularProgressIndicator(
-                        color: Color.fromARGB(255, 133, 22, 22),
-                      )),
-                    )
-                  : const SliverToBoxAdapter(
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: CircularProgressIndicator(
-                            color: Color.fromARGB(255, 133, 22, 22),
-                          ),
-                        ),
-                      ),
-                    )
+              if (homeBloc.isFirstFetch)
+                const SliverFillRemaining(
+                  child: Center(child: CircularProgressIndicator()),
+                )
+              else
+                const SliverToBoxAdapter(
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                ),
             ],
           );
-        } else if (state is HomeSuccessState) {
+        }
+        if (state is HomeSuccessState) {
           return CustomScrollView(
-              controller: homeBloc.scrollController,
-              slivers: [
-                SliverList.builder(
-                  itemBuilder: (context, index) {
-                    return HeroCard(hero: homeBloc.heroes[index]);
-                  },
-                  itemCount: homeBloc.heroes.length,
-                ),
-              ]);
-        } else if (state is HomeErrorState) {
+            controller: homeBloc.scrollController,
+            slivers: [
+              SliverList.builder(
+                itemBuilder: (context, index) {
+                  return HeroCard(hero: homeBloc.heroes[index]);
+                },
+                itemCount: homeBloc.heroes.length,
+              ),
+            ],
+          );
+        }
+        if (state is HomeErrorState) {
           return CustomScrollView(
             slivers: [
               SliverFillRemaining(
@@ -66,9 +66,8 @@ class HeroesList extends StatelessWidget {
               ),
             ],
           );
-        } else {
-          return const SizedBox.shrink();
         }
+        return const SizedBox.shrink();
       },
     );
   }
