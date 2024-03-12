@@ -16,7 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeStates> {
   bool isLoading = false;
   
   void incrementOffset() {
-    offset += 15;
+    offset += 20;
   }
 
   Future<void> getHeroes(HomeLoadEvent event ,Emitter<HomeStates> emit) async {
