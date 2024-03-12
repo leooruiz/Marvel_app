@@ -37,6 +37,7 @@ final ThemeData themes = ThemeData(
       overflow: TextOverflow.ellipsis,
     ),
     titleSmall: TextStyle(
+      overflow: TextOverflow.ellipsis,
       fontSize: 16,
       color: AppColors.white,
       fontWeight: FontWeight.w600,

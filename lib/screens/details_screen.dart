@@ -73,11 +73,14 @@ class DetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    child: Center(
-                      child: Text(
-                        hero.name,
-                        style: Theme.of(context).textTheme.titleLarge,
-                        overflow: TextOverflow.ellipsis,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Center(
+                        child: Text(
+                          hero.name,
+                          style: Theme.of(context).textTheme.titleLarge,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ),
                   ),
@@ -101,7 +104,8 @@ class DetailsScreen extends StatelessWidget {
                             ? hero.description
                             : Wordings.noDescription,
                         style: Theme.of(context).textTheme.bodyLarge,
-                        overflow: TextOverflow.clip,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 12,
                       ),
                     ),
                   ),
