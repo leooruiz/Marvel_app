@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../domain/business/bloc/theme_bloc/theme_bloc.dart';
-import '../domain/business/bloc/theme_bloc/theme_events.dart';
 import '../domain/business/bloc/theme_bloc/theme_states.dart';
 import '../themes/app_colors.dart';
 import '../utils/constants/wordings.dart';
 import 'components/heroes_list_page.dart';
+import 'components/home_drawer.dart';
 import 'favorites_screen.dart';
 
 class Home extends StatefulWidget {
@@ -30,21 +30,6 @@ class _HomeState extends State<Home> {
     });
   }
 
-  final MaterialStateProperty<Icon?> thumbIcon =
-      MaterialStateProperty.resolveWith<Icon>((states) {
-    if (states.contains(MaterialState.selected)) {
-      return const Icon(
-        Icons.light_mode_sharp,
-        color: AppColors.dark,
-      );
-    } else {
-      return const Icon(
-        Icons.dark_mode,
-        color: AppColors.white,
-      );
-    }
-  });
-
   @override
   Widget build(BuildContext context) {
     final themeBloc = context.read<ThemeBloc>();
@@ -53,61 +38,9 @@ class _HomeState extends State<Home> {
         return Scaffold(
           backgroundColor:
               state is ThemeLightState ? AppColors.white : AppColors.dark,
-          drawer: Drawer(
-            backgroundColor:
-                state is ThemeLightState ? AppColors.white : AppColors.dark,
-            width: MediaQuery.of(context).size.width / 2.2,
-            child: ListView(
-              children: [
-                DrawerHeader(
-                  child: Text(
-                    Wordings.settings,
-                    style: TextStyle(
-                      color: AppColors.red,
-                      fontSize:
-                          Theme.of(context).textTheme.titleLarge!.fontSize,
-                      fontWeight: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .fontWeight, //TODO: POSSO USAR NULL CHECK AQUI?
-                    ),
-                  ),
-                ),
-                ListTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        Wordings.theme,
-                        style: TextStyle(
-                          color: AppColors.red,
-                          fontSize:
-                              Theme.of(context).textTheme.titleLarge!.fontSize,
-                          fontWeight: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .fontWeight,
-                        ),
-                      ),
-                      Switch(
-                        inactiveThumbColor: AppColors.darkRed,
-                        inactiveTrackColor: AppColors.dark,
-                        activeTrackColor: AppColors.darkRed,
-                        thumbIcon: thumbIcon,
-                        value: state is ThemeLightState,
-                        onChanged: (bool value) {
-                          themeBloc.add(
-                            ThemeChangeEvent(
-                              isLight: !value,
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+          drawer: HomeDrawer(
+            state: state,
+            themeBloc: themeBloc,
           ),
           appBar: AppBar(
             title: Text(
