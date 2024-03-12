@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 import './app_colors.dart';
 
 final ThemeData themes = ThemeData(
-  bottomNavigationBarTheme: const BottomNavigationBarThemeData(),
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    unselectedItemColor: AppColors.white60,
+    selectedItemColor: AppColors.white,
+    backgroundColor: AppColors.darkRed,
+  ),
   listTileTheme: const ListTileThemeData(),
   progressIndicatorTheme:
       const ProgressIndicatorThemeData(color: AppColors.red),
   appBarTheme: const AppBarTheme(
+    elevation: 4,
     actionsIconTheme: IconThemeData(color: AppColors.yellowFavoriteButton),
     iconTheme: IconThemeData(color: AppColors.white),
     backgroundColor: AppColors.darkRed,

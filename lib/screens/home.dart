@@ -49,7 +49,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final themeBloc = context.read<ThemeBloc>();
     return BlocBuilder<ThemeBloc, ThemeStates>(
-      //TODO: TEST IF USING BLOCBUILDER'S BLOC IT WORKS
       builder: (context, state) {
         return Scaffold(
           backgroundColor:
@@ -83,20 +82,19 @@ class _HomeState extends State<Home> {
                         style: TextStyle(
                           color: AppColors.red,
                           fontSize:
-                              Theme.of(context).textTheme.titleMedium!.fontSize,
+                              Theme.of(context).textTheme.titleLarge!.fontSize,
                           fontWeight: Theme.of(context)
                               .textTheme
-                              .titleMedium!
+                              .titleLarge!
                               .fontWeight,
                         ),
                       ),
                       Switch(
                         inactiveThumbColor: AppColors.darkRed,
                         inactiveTrackColor: AppColors.dark,
-                        activeTrackColor: AppColors.greyId,
+                        activeTrackColor: AppColors.darkRed,
                         thumbIcon: thumbIcon,
-                        value: state
-                            is ThemeLightState, //TODO: Salvar preferencia do usuario no shared prefs
+                        value: state is ThemeLightState,
                         onChanged: (bool value) {
                           themeBloc.add(
                             ThemeChangeEvent(
@@ -116,14 +114,9 @@ class _HomeState extends State<Home> {
               Wordings.title,
               style: Theme.of(context).textTheme.titleLarge,
             ),
-            elevation: 4,
-            backgroundColor: AppColors.darkRed,
           ),
           body: _pages.elementAt(_selectedIndex),
           bottomNavigationBar: BottomNavigationBar(
-            unselectedItemColor: AppColors.white60,
-            selectedItemColor: AppColors.white,
-            backgroundColor: AppColors.darkRed,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 tooltip: Wordings.heroes,
