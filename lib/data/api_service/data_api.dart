@@ -6,15 +6,13 @@ import '../../utils/constants/api_url.dart';
 class DataApi {
   final dio = Dio();
 
-  void configureDio(int offset) {
+  void _configureDio() {
     dio.options = BaseOptions(
       baseUrl: ApiUrl.url,
       queryParameters: {
         'ts': '123',
         'apikey': '044479a19929992d86c53efb86add0a5',
         'hash': 'd7d2e2160357184800ff55f0b845be50',
-        'limit': 20,
-        'offset': offset,
       },
       connectTimeout: const Duration(seconds: 6),
       receiveTimeout: const Duration(seconds: 6),
@@ -22,9 +20,12 @@ class DataApi {
   }
 
   Future<List<MarvelHero>> getHeroesList({required int offset}) async {
-    configureDio(offset);
+    _configureDio();
     final Response response =
-        await dio.get(dio.options.baseUrl);
+        await dio.get(dio.options.baseUrl, queryParameters: {
+      'limit': 20,
+      'offset': offset,
+    });
     if (response.statusCode != null &&
         response.statusCode! > 199 &&
         response.statusCode! < 300) {
