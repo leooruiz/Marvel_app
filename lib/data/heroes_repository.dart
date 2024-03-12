@@ -1,6 +1,6 @@
 import '../domain/models/marvel_hero.dart';
 import 'api_service/data_api.dart';
-import 'dao_service/shared_prefs.dart';
+import 'dao_service/favorites_shared_prefs.dart';
 
 class HeroesRepository {
   final DataApi _dataApi = DataApi();
