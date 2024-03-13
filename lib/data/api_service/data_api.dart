@@ -21,11 +21,13 @@ class DataApi {
 
   Future<List<MarvelHero>> getHeroesList({required int offset}) async {
     _configureDio();
-    final Response response =
-        await dio.get(dio.options.baseUrl, queryParameters: {
-      'limit': 20,
-      'offset': offset,
-    });
+    final Response response = await dio.get(
+      dio.options.baseUrl,
+      queryParameters: {
+        'limit': 20,
+        'offset': offset,
+      },
+    );
     if (response.statusCode != null &&
         response.statusCode! > 199 &&
         response.statusCode! < 300) {
