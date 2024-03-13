@@ -53,11 +53,8 @@ class DetailsScreen extends StatelessWidget {
                 return const SizedBox.shrink();
               },
             ),
-
-            // ),
           ],
         ),
-        // ),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(30, 30, 30, 100),
@@ -79,7 +76,6 @@ class DetailsScreen extends StatelessWidget {
                         child: Text(
                           hero.name,
                           style: Theme.of(context).textTheme.titleLarge,
-                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ),
@@ -104,7 +100,6 @@ class DetailsScreen extends StatelessWidget {
                             ? hero.description
                             : Wordings.noDescription,
                         style: Theme.of(context).textTheme.bodyLarge,
-                        overflow: TextOverflow.ellipsis,
                         maxLines: 12,
                       ),
                     ),
