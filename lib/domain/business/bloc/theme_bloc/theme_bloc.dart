@@ -10,11 +10,13 @@ class ThemeBloc extends Bloc<ThemeEvents, ThemeStates> {
       changeTheme,
     );
     on<ThemeLoadEvent>(
-      verifyTheme,
+      (event, emit) => verifyTheme(emit),
     );
   }
 
-  Future<void> verifyTheme(ThemeEvents event, Emitter emit) async {
+  Future<void> verifyTheme(
+    Emitter<ThemeStates> emit,
+  ) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final bool? isLight = prefs.getBool('isLight');
     if (isLight != null) {
@@ -42,8 +44,7 @@ class ThemeBloc extends Bloc<ThemeEvents, ThemeStates> {
         await prefs.setBool('isLight', true);
         emit(ThemeLightState());
       }
-    }
-    if (prefs.getBool('isLight') == null) {
+    } else {
       await prefs.setBool('isLight', true);
     }
   }
