@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../domain/business/bloc/theme_bloc/theme_bloc.dart';
+import '../domain/business/bloc/theme_bloc/theme_events.dart';
 import '../domain/business/bloc/theme_bloc/theme_states.dart';
 import '../themes/app_colors.dart';
 import '../utils/constants/wordings.dart';
@@ -28,6 +29,12 @@ class _HomeState extends State<Home> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<ThemeBloc>().add(ThemeLoadEvent());
   }
 
   @override
