@@ -4,10 +4,11 @@ import 'dao_service/favorites_shared_prefs.dart';
 
 class HeroesRepository {
   final DataApi _dataApi = DataApi();
-  final SharedPrefs _prefs = SharedPrefs();
+  final FavoritesSharedPrefs _prefs = FavoritesSharedPrefs();
 
   Future<List<MarvelHero>> loadAllHeroes({required int offset}) async {
-    final List<MarvelHero> heroesFromApi = await _dataApi.getHeroesList(offset: offset);
+    final List<MarvelHero> heroesFromApi =
+        await _dataApi.getHeroesList(offset: offset);
     return heroesFromApi;
   }
 
