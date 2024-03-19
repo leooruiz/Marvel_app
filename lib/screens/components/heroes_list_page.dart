@@ -28,6 +28,7 @@ class _HeroesListPageState extends State<HeroesListPage> {
     }
 
     scrollController.addListener(scrollListener);
+
     return BlocBuilder<HomeBloc, HomeStates>(
       builder: (context, state) {
         if (state is HomeLoadingState) {

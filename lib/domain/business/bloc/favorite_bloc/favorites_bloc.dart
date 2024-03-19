@@ -17,28 +17,37 @@ class FavoritesBloc extends Bloc<FavoritesEvents, FavoritesStates> {
       removeHero,
     );
   }
+  final HeroesRepository _repo = HeroesRepository();
+
   Future<void> removeHero(
     FavoriteRemoveEvent event,
     Emitter<FavoritesStates> emit,
   ) async {
-    if ((await _repo.getFavoriteHeroes()).contains(event.hero)) {
+    final MarvelHero hero = event.hero;
+    final List<MarvelHero> oldFavorites =
+        (state as FavoriteSuccessState).favoriteHeroes;
+    if (oldFavorites.contains(hero)) {
+      await _repo.removeFavoriteHero(hero);
       emit(
         FavoriteSuccessState(
-          favoriteHeroes: await _repo.removeFavoriteHero(event.hero),
+          favoriteHeroes: oldFavorites..remove(hero),
         ),
       );
     }
   }
 
-  final HeroesRepository _repo = HeroesRepository();
   Future<void> addHero(
     FavoriteAddEvent event,
     Emitter<FavoritesStates> emit,
   ) async {
-    if (!(await _repo.getFavoriteHeroes()).contains(event.hero)) {
+    final MarvelHero hero = event.hero;
+    final List<MarvelHero> oldFavorites =
+        (state as FavoriteSuccessState).favoriteHeroes;
+    if (!oldFavorites.contains(hero)) {
+      await _repo.addFavoriteHero(hero);
       emit(
         FavoriteSuccessState(
-          favoriteHeroes: await _repo.addFavoriteHero(event.hero),
+          favoriteHeroes: oldFavorites..add(hero),
         ),
       );
     }

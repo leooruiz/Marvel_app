@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'theme_events.dart';
 import 'theme_states.dart';
 
-class ThemeBloc extends Bloc<ThemeEvents, ThemeStates> {
+class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc() : super(ThemeLightState()) {
     on<ThemeChangeEvent>(
       changeTheme,
@@ -15,37 +15,21 @@ class ThemeBloc extends Bloc<ThemeEvents, ThemeStates> {
   }
 
   Future<void> verifyTheme(
-    Emitter<ThemeStates> emit,
+    Emitter<ThemeState> emit,
   ) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final bool? isLight = prefs.getBool('isLight');
-    if (isLight != null) {
-      if (!isLight) {
-        emit(ThemeDarkState());
-      }
-      if (isLight) {
-        emit(ThemeLightState());
-      }
-    }
-    await prefs.setBool('isLight', true);
+    final bool isLight = prefs.getBool('isLight') ?? true;
+    emit(isLight ? ThemeLightState() : ThemeDarkState());
+    await prefs.setBool('isLight', isLight);
   }
 
   Future<void> changeTheme(
     ThemeChangeEvent event,
-    Emitter<ThemeStates> emit,
+    Emitter<ThemeState> emit,
   ) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getBool('isLight') != null) {
-      if (event.isLight) {
-        await prefs.setBool('isLight', false);
-        emit(ThemeDarkState());
-      }
-      if (!event.isLight) {
-        await prefs.setBool('isLight', true);
-        emit(ThemeLightState());
-      }
-    } else {
-      await prefs.setBool('isLight', true);
-    }
+    final bool isLight = prefs.getBool('isLight') ?? true;
+    emit(isLight ? ThemeDarkState() : ThemeLightState());
+    await prefs.setBool('isLight', !isLight);
   }
 }

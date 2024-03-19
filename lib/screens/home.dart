@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final themeBloc = context.read<ThemeBloc>();
-    return BlocBuilder<ThemeBloc, ThemeStates>(
+    return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) {
         return Scaffold(
           backgroundColor:

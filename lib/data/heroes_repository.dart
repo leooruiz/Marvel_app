@@ -18,17 +18,11 @@ class HeroesRepository {
     return heroesFromPrefs;
   }
 
-  Future<List<MarvelHero>> addFavoriteHero(MarvelHero hero) async {
+  Future<void> addFavoriteHero(MarvelHero hero) async {
     await _prefs.addToDatabase(hero);
-    final List<MarvelHero> heroesFromPrefs =
-        await _prefs.getMarvelHeroesFromDatabase();
-    return heroesFromPrefs;
   }
 
-  Future<List<MarvelHero>> removeFavoriteHero(MarvelHero hero) async {
+  Future<void> removeFavoriteHero(MarvelHero hero) async {
     await _prefs.removeFromDatabase(hero);
-    final List<MarvelHero> heroesFromPrefs =
-        await _prefs.getMarvelHeroesFromDatabase();
-    return heroesFromPrefs;
   }
 }

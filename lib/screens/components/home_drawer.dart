@@ -8,7 +8,7 @@ import '../../utils/constants/wordings.dart';
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer({required this.state, required this.themeBloc, super.key});
-  final ThemeStates state;
+  final ThemeState state;
   final ThemeBloc themeBloc;
   @override
   State<HomeDrawer> createState() => _HomeDrawerState();

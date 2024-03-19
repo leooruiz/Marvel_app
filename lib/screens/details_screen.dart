@@ -17,7 +17,7 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<FavoritesBloc>();
-    return BlocBuilder<ThemeBloc, ThemeStates>(
+    return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) => Scaffold(
         backgroundColor:
             state is ThemeLightState ? AppColors.white : AppColors.dark,
