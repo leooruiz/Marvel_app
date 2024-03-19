@@ -27,10 +27,13 @@ class HeroCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: Image.network(
-                    hero.image,
-                    fit: BoxFit.cover,
-                    height: 120,
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Image.network(
+                      hero.image,
+                      fit: BoxFit.cover,
+                      height: 120,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -55,16 +58,17 @@ class HeroCard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          SizedBox(
-                            width: 230,
-                            height: 80,
-                            child: Center(
-                              child: Text(
-                                hero.name,
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.titleSmall,
-                                overflow: TextOverflow.clip,
-                                softWrap: true,
+                          Expanded(
+                            child: SizedBox(
+                              height: 80,
+                              child: Center(
+                                child: Text(
+                                  hero.name,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                  overflow: TextOverflow.clip,
+                                  softWrap: true,
+                                ),
                               ),
                             ),
                           ),
