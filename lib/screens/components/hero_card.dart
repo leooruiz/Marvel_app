@@ -18,40 +18,61 @@ class HeroCard extends StatelessWidget {
         elevation: 10,
         shadowColor: AppColors.dark,
         child: Ink(
+          width: 100,
           child: InkWell(
             borderRadius: BorderRadius.circular(10),
             onTap: () =>
                 Navigator.pushNamed(context, Routes.details, arguments: hero),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  flex: 2,
-                  child: Image.network(
-                    hero.image,
-                    fit: BoxFit.cover,
-                    height: 100,
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 7),
-                    child: Text(
-                      hero.name,
-                      style: Theme.of(context).textTheme.titleSmall,
-                      overflow: TextOverflow.clip,
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Image.network(
+                      hero.image,
+                      fit: BoxFit.cover,
+                      height: 120,
                     ),
                   ),
                 ),
                 Expanded(
                   flex: 2,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        hero.id.toString().padLeft(8, '#'),
-                        style: const TextStyle(
-                          color: AppColors.greyId,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: Text(
+                              hero.id.toString().padLeft(8, '#'),
+                              style: const TextStyle(
+                                color: AppColors.greyId,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              height: 80,
+                              child: Center(
+                                child: Text(
+                                  hero.name,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                  overflow: TextOverflow.clip,
+                                  softWrap: true,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

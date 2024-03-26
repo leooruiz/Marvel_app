@@ -1,6 +1,5 @@
 abstract class HomeEvent {}
 
-class HomeLoadEvent extends HomeEvent {
+class HomeLoadEvent extends HomeEvent {}
 
-  //Loading more heroes from api event
-}
+class HomeLoadNextEvent extends HomeEvent {}

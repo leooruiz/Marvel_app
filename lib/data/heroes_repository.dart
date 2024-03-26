@@ -1,13 +1,14 @@
 import '../domain/models/marvel_hero.dart';
 import 'api_service/data_api.dart';
-import 'dao_service/shared_prefs.dart';
+import 'dao_service/favorites_shared_prefs.dart';
 
 class HeroesRepository {
   final DataApi _dataApi = DataApi();
-  final SharedPrefs _prefs = SharedPrefs();
+  final FavoritesSharedPrefs _prefs = FavoritesSharedPrefs();
 
-  Future<List<MarvelHero>> loadAllHeroes() async {
-    final List<MarvelHero> heroesFromApi = await _dataApi.getHeroesList();
+  Future<List<MarvelHero>> loadAllHeroes({required int offset}) async {
+    final List<MarvelHero> heroesFromApi =
+        await _dataApi.getHeroesList(offset: offset);
     return heroesFromApi;
   }
 
@@ -17,17 +18,11 @@ class HeroesRepository {
     return heroesFromPrefs;
   }
 
-  Future<List<MarvelHero>> addFavoriteHero(MarvelHero hero) async {
+  Future<void> addFavoriteHero(MarvelHero hero) async {
     await _prefs.addToDatabase(hero);
-    final List<MarvelHero> heroesFromPrefs =
-        await _prefs.getMarvelHeroesFromDatabase();
-    return heroesFromPrefs;
   }
 
-  Future<List<MarvelHero>> removeFavoriteHero(MarvelHero hero) async {
+  Future<void> removeFavoriteHero(MarvelHero hero) async {
     await _prefs.removeFromDatabase(hero);
-    final List<MarvelHero> heroesFromPrefs =
-        await _prefs.getMarvelHeroesFromDatabase();
-    return heroesFromPrefs;
   }
 }

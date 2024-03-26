@@ -1,5 +1,5 @@
-abstract class ThemeStates {}
+abstract class ThemeState {}
 
-class ThemeDarkState extends ThemeStates {}
+class ThemeDarkState extends ThemeState {}
 
-class ThemeLightState extends ThemeStates {}
+class ThemeLightState extends ThemeState {}

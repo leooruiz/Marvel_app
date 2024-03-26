@@ -1,30 +1,26 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// import 'package:flutter_test/flutter_test.dart';
+// import 'package:marvel_app/data/api_service/data_api.dart';
+// import 'package:marvel_app/domain/models/marvel_hero.dart';
+// import 'package:mocktail/mocktail.dart';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
+// class MarvelHeroMock extends Mock implements MarvelHero {}
 
-import 'package:marvel_app/main.dart';
-
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
-
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
-}
+// void main() {
+//   final marvelMock = MarvelHeroMock();
+//   test('deve pegar uma lista de 20 herois da api', () async {
+//     when(
+//       marvelMock.toMap,
+//     ).thenReturn({
+//       'myName': 'Leonardo',
+//     });
+//     expect(marvelMock.toMap(), {'myName': 'Leonardo'});
+//     verify(
+//       marvelMock.toMap,
+//     ).called(1);
+//     final DataApi dataApi = DataApi();
+//     final List<MarvelHero> heroesList = await dataApi.getHeroesList(offset: 0);
+//     expect(heroesList.length, 20);
+//     expect(heroesList.first.name, '3-D Man');
+//     expect(heroesList.last.description, '');
+//   });
+// }

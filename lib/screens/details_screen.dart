@@ -17,7 +17,7 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<FavoritesBloc>();
-    return BlocBuilder<ThemeBloc, ThemeStates>(
+    return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) => Scaffold(
         backgroundColor:
             state is ThemeLightState ? AppColors.white : AppColors.dark,
@@ -27,7 +27,7 @@ class DetailsScreen extends StatelessWidget {
               builder: (context, state) {
                 if (state is FavoriteSuccessState) {
                   return Padding(
-                    padding: const EdgeInsets.only(right: 10),
+                    padding: const EdgeInsets.only(right: 15),
                     child: (state.favoriteHeroes.contains(hero))
                         ? IconButton(
                             onPressed: () {
@@ -35,7 +35,7 @@ class DetailsScreen extends StatelessWidget {
                             },
                             icon: const Icon(
                               Icons.favorite,
-                              size: 30,
+                              size: 32,
                             ),
                           )
                         : IconButton(
@@ -43,6 +43,7 @@ class DetailsScreen extends StatelessWidget {
                               bloc.add(FavoriteAddEvent(hero: hero));
                             },
                             icon: const Icon(
+                              color: AppColors.white,
                               Icons.favorite_border,
                               size: 32,
                             ),
@@ -52,11 +53,8 @@ class DetailsScreen extends StatelessWidget {
                 return const SizedBox.shrink();
               },
             ),
-
-            // ),
           ],
         ),
-        // ),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(30, 30, 30, 100),
@@ -72,11 +70,13 @@ class DetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    child: Center(
-                      child: Text(
-                        hero.name,
-                        style: Theme.of(context).textTheme.titleLarge,
-                        overflow: TextOverflow.ellipsis,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Center(
+                        child: Text(
+                          hero.name,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
                       ),
                     ),
                   ),
@@ -100,7 +100,7 @@ class DetailsScreen extends StatelessWidget {
                             ? hero.description
                             : Wordings.noDescription,
                         style: Theme.of(context).textTheme.bodyLarge,
-                        overflow: TextOverflow.clip,
+                        maxLines: 12,
                       ),
                     ),
                   ),

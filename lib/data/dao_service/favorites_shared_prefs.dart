@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/models/marvel_hero.dart';
 
-class SharedPrefs {
+class FavoritesSharedPrefs {
   Future<void> removeFromDatabase(MarvelHero hero) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 

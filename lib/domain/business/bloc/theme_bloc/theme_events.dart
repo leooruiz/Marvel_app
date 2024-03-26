@@ -1,6 +1,8 @@
-abstract class ThemeEvents {}
+abstract class ThemeEvent {}
 
-class ThemeChangeEvent extends ThemeEvents {
+class ThemeChangeEvent extends ThemeEvent {
   ThemeChangeEvent({required this.isLight});
   bool isLight;
 }
+
+class ThemeLoadEvent extends ThemeEvent {}
