@@ -23,7 +23,7 @@ class _HeroesListPageState extends State<HeroesListPage> {
       if (scrollController.position.pixels ==
               scrollController.position.maxScrollExtent &&
           !homeBloc.isLoading) {
-        homeBloc.add(HomeLoadEvent());
+        homeBloc.add(HomeLoadNextEvent());
       }
     }
 
@@ -34,26 +34,33 @@ class _HeroesListPageState extends State<HeroesListPage> {
         if (state is HomeLoadingState) {
           return CustomScrollView(
             controller: scrollController,
+            slivers: const [
+              SliverFillRemaining(
+                child: Center(child: CircularProgressIndicator()),
+              ),
+            ],
+          );
+        }
+        if (state is HomeLoadingNextState) {
+          return CustomScrollView(
+            controller: scrollController,
             slivers: [
               SliverList.builder(
                 itemBuilder: (context, index) {
-                  return HeroCard(hero: homeBloc.heroes[index]);
+                  return HeroCard(
+                    hero: state.heroes[index],
+                  );
                 },
-                itemCount: homeBloc.heroes.length,
+                itemCount: state.heroes.length,
               ),
-              if (homeBloc.isFirstFetch)
-                const SliverFillRemaining(
-                  child: Center(child: CircularProgressIndicator()),
-                )
-              else
-                const SliverToBoxAdapter(
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: CircularProgressIndicator(),
-                    ),
+              const SliverToBoxAdapter(
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: CircularProgressIndicator(),
                   ),
                 ),
+              ),
             ],
           );
         }
@@ -63,9 +70,9 @@ class _HeroesListPageState extends State<HeroesListPage> {
             slivers: [
               SliverList.builder(
                 itemBuilder: (context, index) {
-                  return HeroCard(hero: homeBloc.heroes[index]);
+                  return HeroCard(hero: state.heroes[index]);
                 },
-                itemCount: homeBloc.heroes.length,
+                itemCount: state.heroes.length,
               ),
             ],
           );
